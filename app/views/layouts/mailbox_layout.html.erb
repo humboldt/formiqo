@@ -24,13 +24,13 @@
 
             <div class="tabs is-toggle">
               <ul>
-                <li class="<%= 'is-active' if current_page?(mailbox_path) %>">
+                <li class="<%= 'is-active' if current_page?(mailbox_path(@mailbox)) %>">
                   <%= link_to mailbox_path(@mailbox) do %>
                     <span class="icon is-small"><i class="fa fa-image"></i></span>
                     <span>Setup</span>
                   <% end %>
                 </li>
-                <li class="<%= 'is-active' if current_page?(edit_mailbox_path) %>">
+                <li class="<%= 'is-active' if current_page?(edit_mailbox_path(@mailbox)) %>">
                   <%= link_to edit_mailbox_path(@mailbox) do %>
                     <span class="icon is-small"><i class="fa fa-sliders"></i></span>
                     <span>Edit</span>
@@ -42,7 +42,7 @@
                     <span>Export</span>
                   </a>
                 </li>
-                <li>
+                <li class="<%= 'is-active' if current_page?(mailbox_messages_path(@mailbox)) %>">
                   <%= link_to mailbox_messages_path(@mailbox) do %>
                     <span class="icon is-small"><i class="fa fa-envelope-o"></i></span>
                     <span>Messages</span>

@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
 
+  layout 'mailbox_layout', only: [:index]
+
   def index
     @messages = @mailbox.messages
   end
@@ -29,7 +31,7 @@ class MessagesController < ApplicationController
       if params[:token]
         @mailbox = Mailbox.find_by(token: params[:token])
       else
-        @mailbox = Mailbox.find(params[:mailbox_id])
+        @mailbox = Mailbox.find_by(token: params[:mailbox_id])
       end
     end
 
