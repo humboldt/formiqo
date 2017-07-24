@@ -1,0 +1,23 @@
+<%= form_with(model: [@mailbox, Message.new],
+              url: external_message_path(@mailbox.token, Message.new)) do |form| %>
+
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :message_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, id: :message_subject %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :message_body %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

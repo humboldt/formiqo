@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formiqo</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <%= render "layouts/nav" %>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-2">
+            <!-- should be mailboxes: @current_user.mailboxes -->
+            <%= render "layouts/menu", mailboxes: Mailbox.all %>
+          </div>
+          <div class="column">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
