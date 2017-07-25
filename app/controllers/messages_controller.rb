@@ -10,8 +10,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @mailbox.messages.create!(message_params)
-    redirect_to @mailbox
+
+    respond_to do |format|
+      if @mailbox.messages.create(message_params)
+        format.html { redirect_to params[:redirect_to_success] }
+        format.json { render json: @mailbox }
+      else
+        format.html { redirect_to params[:redirect_to_fail] }
+        format.json { render json: @mailbox }
+      end
+    end
   end
 
   def destroy
@@ -36,6 +44,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.permit(:email, :subject, :body)
+      params.permit(:email, :subject, :body, :comment)
     end
 end

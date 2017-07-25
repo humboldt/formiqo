@@ -5,6 +5,9 @@ module MailboxesHelper
     form = '
         <form action="%{url}" accept-charset="UTF-8" method="post">
           <input name="utf8" type="hidden" value="✓">
+          <input name="redirect_success" type="hidden" value="http://google.com">
+          <input name="redirect_fail" type="hidden" value="http://google.com">
+
           <div class="field">
             <label for="email">Email</label>
             <input type="text" name="email">
@@ -18,6 +21,11 @@ module MailboxesHelper
           <div class="field">
             <label for="body">Body</label>
             <textarea name="body"></textarea>
+          </div>
+
+          <div style="width: 1px; height: 1px; overflow: hidden; display: none;">
+            Please leave following field blank:
+            <textarea name="comment"></textarea>
           </div>
 
           <div class="actions">
