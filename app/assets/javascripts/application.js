@@ -10,6 +10,22 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function() {
+
+  if ($('.notification').length) {
+    setTimeout(function(){
+      $('.notification').fadeOut();
+    }, 5000)
+  }
+  $('.notification > button.delete').on('click', function(e) {
+    e.preventDefault()
+    $(this).closest('.notification').fadeOut();
+  })
+})
