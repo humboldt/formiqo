@@ -1,12 +1,19 @@
 <aside class="menu">
+  <div class="block">
+    <%= link_to new_mailbox_path, { class: "button is-primary is-fullwidth" } do %>
+      <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;New mailbox
+    <% end %>
+  </div>
   <p class="menu-label">
     Mailboxes
   </p>
   <ul class="menu-list">
     <% mailboxes.each do |mb| %>
-    <li><%= link_to mb.name, mailbox_path(mb) %></li>
-    <!-- <li><a>Mailboxes</a></li>
-    <li><a>Customers</a></li> -->
+    <li>
+      <%= link_to mailbox_path(mb), {class: "#{'is-active' if @mailbox.try(:name) == mb.name }"}  do %>
+        <%= mb.name %>
+      <% end %>
+    </li>
     <% end %>
   </ul>
 </aside>
