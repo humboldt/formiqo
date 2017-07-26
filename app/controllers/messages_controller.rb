@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  # before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
 
@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-
     respond_to do |format|
       if @mailbox.messages.create(message_params)
         format.html { redirect_to params[:redirect_success] }
@@ -25,7 +24,7 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
+      format.html { redirect_to mailbox_messages_url(@mailbox), notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

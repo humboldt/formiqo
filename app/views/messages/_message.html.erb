@@ -15,6 +15,7 @@
     </div>
   </div>
   <div class="media-right">
-    <button class="delete"></button>
+    <%= link_to "", mailbox_message_path(@mailbox, message), method: :delete, data: { confirm: 'Are you sure?' }, class: "delete" %>
+    <!-- <button class="delete"></button> -->
   </div>
 </article>
