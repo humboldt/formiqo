@@ -8,7 +8,7 @@
     Mailboxes
   </p>
   <ul class="menu-list">
-    <% mailboxes.each do |mb| %>
+    <% current_user.mailboxes.each do |mb| %>
     <li>
       <%= link_to mailbox_path(mb), {class: "#{'is-active' if @mailbox.try(:name) == mb.name }"}  do %>
         <%= mb.name %>

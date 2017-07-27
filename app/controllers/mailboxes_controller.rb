@@ -5,7 +5,7 @@ class MailboxesController < ApplicationController
   layout 'mailbox_layout', only: [:show, :edit]
 
   def index
-    @mailboxes = Mailbox.all
+    @mailboxes = current_user.mailboxes
   end
 
   def show
@@ -19,7 +19,7 @@ class MailboxesController < ApplicationController
   end
 
   def create
-    @mailbox = Mailbox.new(mailbox_params)
+    @mailbox = current_user.mailboxes.build(mailbox_params)
 
     respond_to do |format|
       if @mailbox.save
@@ -54,7 +54,7 @@ class MailboxesController < ApplicationController
 
   private
     def set_mailbox
-      @mailbox = Mailbox.find_by(token: params[:id])
+      @mailbox = current_user.mailboxes.find_by(token: params[:id])
     end
 
     def mailbox_params

@@ -1,6 +1,7 @@
 class Mailbox < ApplicationRecord
   before_create :generate_mailbox_token
   has_many :messages, dependent: :destroy
+  belongs_to :user
   validates_presence_of :name
 
   def to_param
