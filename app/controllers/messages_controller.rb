@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox

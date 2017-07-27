@@ -1,0 +1,77 @@
+<h1 class="title">Create an Account</h1>
+<div class="box">
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%# devise_error_messages! %>
+
+  <!-- <div class="field">
+    <div class="columns">
+      <div class="column">
+        <label for="" class="label">Plan</label>
+        <p class="control has-icons-left is-expanded">
+          <span class="select is-fullwidth">
+            <select>
+              <option selected>Plan 1 - $4.99</option>
+              <option>Plan 2 - $9.99</option>
+            </select>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-globe"></i>
+          </span>
+        </p>
+      </div>
+      <div class="column">
+        <label for="" class="label">Duration</label>
+        <p class="control has-icons-left is-expanded">
+          <span class="select is-fullwidth">
+            <select>
+              <option selected>1 month</option>
+              <option>2 month</option>
+              <option>3 month</option>
+              <option>6 month</option>
+              <option>12 month</option>
+            </select>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-globe"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+
+  </div> -->
+
+  <div class="field">
+    <%= f.label :email, class: "label" %>
+    <p class="control has-icons-left">
+      <%= f.input_field :email, autofocus: true, class: "input #{"is-danger" if f.object.errors.include?(:email)}"  %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+      <p class="help is-danger">
+        <%= f.object.errors[:email].join(", ") %>
+      </p>
+    </p>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, class: "label" %>
+    <p class="control has-icons-left">
+      <%= f.input_field :password, autocomplete: "off", class: "input #{"is-danger" if f.object.errors.include?(:password)}" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+      <p class="help is-danger">
+        <%= f.object.errors[:password].join(", ") %>
+      </p>
+    </p>
+  </div>
+
+  <div class="field">
+    <p class="control">
+      <%= f.button :submit, "Sign up", class: "button is-primary" %>
+    </p>
+  </div>
+<% end %>
+</div>
+
+<%= render "devise/shared/links" %>

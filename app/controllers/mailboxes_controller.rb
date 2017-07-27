@@ -1,4 +1,5 @@
 class MailboxesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_mailbox, only: [:show, :edit, :update, :destroy]
 
   layout 'mailbox_layout', only: [:show, :edit]

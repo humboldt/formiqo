@@ -25,9 +25,7 @@
 
   <div id="navMenuExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item " href="http://bulma.io/">
-        Home
-      </a>
+      <%= link_to "Home", mailboxes_path, class: "navbar-item" %>
       <div class="navbar-item has-dropdown is-hoverable">
         <div class="navbar-link">
           More
@@ -51,19 +49,6 @@
               <div class="level-left">
                 <div class="level-item">
                   <p>
-                    <strong>Export</strong>
-                    <br>
-                    <small>Export emails to csv</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a class="navbar-item " href="http://bulma.io/extensions/">
-            <div class="level is-mobile">
-              <div class="level-left">
-                <div class="level-item">
-                  <p>
                     <strong>Payment</strong>
                     <br>
                     <small>Your payment plan</small>
@@ -72,43 +57,37 @@
               </div>
             </div>
           </a>
+          <%= link_to edit_user_registration_path, class: "navbar-item" do %>
+          <div class="level is-mobile">
+            <div class="level-left">
+              <div class="level-item">
+                <p>
+                  <strong>Account Settings</strong>
+                  <br>
+                  <small></small>
+                </p>
+              </div>
+            </div>
+          </div>
+          <% end %>
+
+          <% if user_signed_in? %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "navbar-item" do %>
+            <div class="level is-mobile">
+              <div class="level-left">
+                <div class="level-item">
+                  <p>
+                    <strong>Sign out</strong>
+                    <br>
+                    <small></small>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
-    </div>
-
-    <div class="navbar-end">
-      <!-- <a class="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
-        Github
-      </a>
-      <a class="navbar-item" href="https://twitter.com/jgthms" target="_blank">
-        Twitter
-      </a>
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a id="twitter"
-              class="button"
-              data-social-network="Twitter"
-              data-social-action="tweet"
-              data-social-target="http://bulma.io"
-              target="_blank"
-              href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&url=http://bulma.io&via=jgthms">
-              <span class="icon">
-                <i class="fa fa-twitter"></i>
-              </span>
-              <span>Tweet</span>
-            </a>
-          </p>
-          <p class="control">
-            <a class="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
-              <span class="icon">
-                <i class="fa fa-download"></i>
-              </span>
-              <span>Download</span>
-            </a>
-          </p>
-        </div>
-      </div> -->
     </div>
   </div>
 </nav>

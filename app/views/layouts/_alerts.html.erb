@@ -1,0 +1,13 @@
+<% flash.each do |k, v| %>
+  <% if k == "notice" || "info" %>
+    <%= content_tag :div, class: "notification is-info" do %>
+      <%= button_tag "", class: "delete" %>
+      <%= v %>
+    <% end %>
+  <% elsif k == "error" %>
+    <%= content_tag :div, class: "notification is-danger" do %>
+      <%= button_tag "", class: "delete" %>
+      <%= v %>
+    <% end %>
+  <% end %>
+<% end %>

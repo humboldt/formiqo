@@ -18,6 +18,13 @@ a {
 .button.is-primary:hover, .button.is-primary.is-hovered {
   background-color: #8972ab;
 }
+.button:focus, .button.is-focused {
+  border-color: #8972ab;
+  box-shadow: 0 0 0.5em rgba(137, 114, 171, 0.52);
+}
+.select select:focus, .select select.is-focused, .select select:active, .select select.is-active {
+  border-color: #8972ab;
+}
 .tabs li.is-active a {
   border-bottom-color: #8972ab;
 }
@@ -25,9 +32,18 @@ a {
   background-color: #8972ab;
   border-color: #8972ab;
 }
+.navbar-link::after,
+.select:after {
+  border: 1px solid #8972ab;
+  border-right: 0;
+  border-top: 0;
+}
 .menu-list a.is-active:hover {
   color: #fff;
 }
 .menu-list a:hover {
   color: #8972ab;
+}
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+    border-color: #8972ab;
 }

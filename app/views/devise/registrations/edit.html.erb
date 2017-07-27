@@ -1,0 +1,39 @@
+<h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email, class: "label" %>
+    <p class="control">
+      <%= f.input_field :email, autofocus: true, class: "input" %>
+    </p>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, class: "label" %>
+    <p class="control">
+      <%= f.input_field :password, autocomplete: "off", class: "input", placeholder: "leave blank if you don't want to change it" %>
+    </p>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, class: "label" %> <i>(we need your current password to confirm your changes)</i>
+    <p class="control">
+      <%= f.password_field :current_password, autocomplete: "off", class: "input"  %>
+    </p>
+  </div>
+
+  <div class="field is-grouped">
+    <p class="control">
+      <%= f.button :submit, "Save changes", class: "button is-primary" %>
+    </p>
+    <p class="control">
+      <%= link_to 'Cancel', mailboxes_path, class: "button" %>
+    </p>
+  </div>
+<% end %>
