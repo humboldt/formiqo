@@ -5,8 +5,6 @@ module MailboxesHelper
     form = '
         <form action="%{url}" accept-charset="UTF-8" method="post">
           <input name="utf8" type="hidden" value="✓">
-          <input name="redirect_success" type="hidden" value="http://google.com">
-          <input name="redirect_fail" type="hidden" value="http://google.com">
 
           <div class="field">
             <label for="email">Email</label>

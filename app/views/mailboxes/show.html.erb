@@ -1,4 +1,11 @@
-<p id="notification"><%= notice %></p>
+
+
+<%= render 'layouts/alerts' %>
+
+<p>
+  <strong>Site url:</strong>
+  <%= link_to @mailbox.site_url, url_link(@mailbox.site_url), target: '_blank' %>
+</p>
 
 <p>
   <strong>Token:</strong>

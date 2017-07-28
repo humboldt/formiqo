@@ -17,10 +17,10 @@ class MessagesController < ApplicationController
   def create
     respond_to do |format|
       if @mailbox.messages.create(message_params)
-        format.html { redirect_to params[:redirect_success] }
+        format.html { redirect_to @mailbox.site_url }
         format.json { render json: @mailbox }
       else
-        format.html { redirect_to params[:redirect_fail] }
+        format.html { redirect_to @mailbox.site_url }
         format.json { render json: @mailbox }
       end
     end

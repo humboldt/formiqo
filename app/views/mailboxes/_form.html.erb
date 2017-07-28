@@ -20,6 +20,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :site_url, class: "label" %>
+    <div class="control">
+      <%= form.text_field :site_url, id: :mailbox_site_url, class: "input" %>
+    </div>
+  </div>
+
+  <div class="field">
     <%= form.label :note, class: "label" %>
     <div class="control">
       <%= form.text_area :note, id: :mailbox_note, class: "textarea", placeholder: "what is this mailbox for? or any other note" %>
