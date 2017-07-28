@@ -30,6 +30,12 @@
                     <span>Setup</span>
                   <% end %>
                 </li>
+                <li class="<%= 'is-active' if current_page?(mailbox_messages_path(@mailbox)) %>">
+                  <%= link_to mailbox_messages_path(@mailbox) do %>
+                    <span class="icon is-small"><i class="fa fa-envelope-o"></i></span>
+                    <span>Messages</span>
+                  <% end %>
+                </li>
                 <li class="<%= 'is-active' if current_page?(edit_mailbox_path(@mailbox)) %>">
                   <%= link_to edit_mailbox_path(@mailbox) do %>
                     <span class="icon is-small"><i class="fa fa-sliders"></i></span>
@@ -37,15 +43,9 @@
                   <% end %>
                 </li>
                 <li>
-                  <a>
+                  <%= link_to mailbox_messages_path(@mailbox, format: :csv) do %>
                     <span class="icon is-small"><i class="fa fa-table"></i></span>
-                    <span>Export</span>
-                  </a>
-                </li>
-                <li class="<%= 'is-active' if current_page?(mailbox_messages_path(@mailbox)) %>">
-                  <%= link_to mailbox_messages_path(@mailbox) do %>
-                    <span class="icon is-small"><i class="fa fa-envelope-o"></i></span>
-                    <span>Messages</span>
+                    <span>Export to CSV</span>
                   <% end %>
                 </li>
               </ul>

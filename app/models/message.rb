@@ -7,4 +7,13 @@ class Message < ApplicationRecord
   validates_length_of :comment, :in => 0..1
 
   default_scope { order(created_at: :desc) }
+
+  def self.to_csv
+    attrs = %w{email subject body created_at}
+    CSV.generate do |csv|
+      all.each do |msg|
+        csv << [msg.mailbox.name] + msg.attributes.values_at(*attrs)
+      end
+    end
+  end
 end

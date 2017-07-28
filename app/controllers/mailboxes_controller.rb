@@ -52,6 +52,7 @@ class MailboxesController < ApplicationController
     end
   end
 
+
   private
     def set_mailbox
       @mailbox = current_user.mailboxes.find_by(token: params[:id])
