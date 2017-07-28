@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
@@ -25,7 +25,11 @@ $(document).on('turbolinks:load', function() {
     }, 5000)
   }
   $('.notification > button.delete').on('click', function(e) {
-    e.preventDefault()
+    e.preventDefault();
     $(this).closest('.notification').fadeOut();
+  })
+  $('.navbar-burger.burger').on('click', function(e) {
+    e.preventDefault();
+    $('.navbar-menu').slideToggle('fast');
   })
 })
