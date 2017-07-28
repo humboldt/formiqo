@@ -1,11 +1,11 @@
-<%= form_with(model: mailbox, local: true) do |form| %>
-  <% if mailbox.errors.any? %>
+<%= simple_form_for(@mailbox) do |form| %>
+  <% if @mailbox.errors.any? %>
     <div id="error_explanation" class="notification is-danger">
       <button class="delete"></button>
-      <h2><%= pluralize(mailbox.errors.count, "error") %> prohibited this mailbox from being saved:</h2>
+      <h2><%= pluralize(@mailbox.errors.count, "error") %> prohibited this mailbox from being saved:</h2>
 
       <ul>
-      <% mailbox.errors.full_messages.each do |message| %>
+      <% @mailbox.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -15,21 +15,21 @@
   <div class="field">
     <%= form.label :name, class: "label" %>
     <div class="control">
-      <%= form.text_field :name, id: :mailbox_name, class: "input" %>
+      <%= form.input_field :name, id: :mailbox_name, class: "input", placeholder: "My blog contact form" %>
     </div>
   </div>
 
   <div class="field">
-    <%= form.label :site_url, class: "label" %>
+    <%= form.label :site_url, "Site Url", class: "label" %>
     <div class="control">
-      <%= form.text_field :site_url, id: :mailbox_site_url, class: "input" %>
+      <%= form.input_field :site_url, id: :mailbox_site_url, class: "input", placeholder: "username.github.io" %>
     </div>
   </div>
 
   <div class="field">
     <%= form.label :note, class: "label" %>
     <div class="control">
-      <%= form.text_area :note, id: :mailbox_note, class: "textarea", placeholder: "what is this mailbox for? or any other note" %>
+      <%= form.input_field :note, id: :mailbox_note, class: "textarea", placeholder: "what is this mailbox for? or any other note" %>
     </div>
   </div>
 

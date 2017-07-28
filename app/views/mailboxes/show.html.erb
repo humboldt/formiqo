@@ -1,15 +1,8 @@
-
-
 <%= render 'layouts/alerts' %>
 
 <p>
   <strong>Site url:</strong>
   <%= link_to @mailbox.site_url, url_link(@mailbox.site_url), target: '_blank' %>
-</p>
-
-<p>
-  <strong>Token:</strong>
-  <%= @mailbox.token %>
 </p>
 
 <p>
@@ -25,13 +18,8 @@
 <p>
   <strong>Form body:</strong>
   <figure class="highlight">
-
-
-        <%= form_code(@mailbox.token) %>
-
-
+    <%= form_code(@mailbox.token) %>
   </figure>
-
 </p>
 
 <hr/>
