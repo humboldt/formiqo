@@ -1,23 +1,32 @@
+<p id="notification"><%= notice %></p>
 
-    <p id="notification"><%= notice %></p>
+<p>
+  <strong>Token:</strong>
+  <%= @mailbox.token %>
+</p>
 
-    <p>
-      <strong>Token:</strong>
-      <%= @mailbox.token %>
-    </p>
+<p>
+  <strong>Name:</strong>
+  <%= @mailbox.name %>
+</p>
 
-    <p>
-      <strong>Name:</strong>
-      <%= @mailbox.name %>
-    </p>
+<p>
+  <strong>Note:</strong>
+  <%= @mailbox.note %>
+</p>
 
-    <p>
-      <strong>Note:</strong>
-      <%= @mailbox.note %>
-    </p>
+<p>
+  <strong>Form body:</strong>
+  <figure class="highlight">
 
-    <p>
 
-      <strong>Form body:</strong>
-      <%= form_code(@mailbox.token) %>
-    </p>
+        <%= form_code(@mailbox.token) %>
+
+
+  </figure>
+
+</p>
+
+<hr/>
+
+<%= link_to "Delete this mailbox", @mailbox, method: :delete, class: "button is-danger is-outlined", data: { confirm: "Are you sure?" } %>

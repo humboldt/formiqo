@@ -35,6 +35,7 @@ module MailboxesHelper
       '
 
     form = form % {url: action_url}
+    form.strip.gsub(" ", "").gsub("\n", "")
     markdown(form.to_s)
   end
 
