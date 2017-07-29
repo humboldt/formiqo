@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
@@ -8,6 +9,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @mailbox.messages
+    @messages = @messages.today if params[:range] == 'today'
     respond_to do |format|
       format.html
       format.csv { send_data @messages.to_csv }
@@ -17,10 +19,10 @@ class MessagesController < ApplicationController
   def create
     respond_to do |format|
       if @mailbox.messages.create(message_params)
-        format.html { redirect_to @mailbox.site_url }
+        format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
       else
-        format.html { redirect_to @mailbox.site_url }
+        format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
       end
     end

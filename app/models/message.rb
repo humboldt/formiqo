@@ -7,6 +7,7 @@ class Message < ApplicationRecord
   validates_length_of :comment, :in => 0..1
 
   default_scope { order(created_at: :desc) }
+  scope :today, -> { where(created_at: ((DateTime.now - 24.hours)..DateTime.now)) }
 
   def self.to_csv
     attrs = %w{email subject body created_at}
