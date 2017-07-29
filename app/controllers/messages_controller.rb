@@ -4,15 +4,12 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
-
   layout 'mailbox_layout', only: [:index]
 
   def index
     @messages = @mailbox.messages
     @messages = @messages.today if params[:range] == 'today'
-    if params[:q]
-      @messages = @messages.search(params[:q])
-    end
+    @messages = @messages.search(params[:q]) if params[:q]
     @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(50)
     respond_to do |format|
       format.html
