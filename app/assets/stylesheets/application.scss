@@ -22,6 +22,9 @@ a {
   border-color: #8972ab;
   box-shadow: 0 0 0.5em rgba(137, 114, 171, 0.52);
 }
+.button.is-primary:active, .button.is-primary.is-active {
+  background-color: #8972ab;
+}
 .select select:focus, .select select.is-focused, .select select:active, .select select.is-active {
   border-color: #8972ab;
 }

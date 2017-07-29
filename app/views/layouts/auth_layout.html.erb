@@ -16,12 +16,7 @@
 
             <div class="columns is-vcentered">
               <div class="column is-4 is-offset-4">
-                <% if notice %>
-                  <p class="notification notice"><%= notice %></p>
-                <% end %>
-                <% if alert %>
-                  <p class="notification is-danger"><%= alert %></p>
-                <% end %>
+                <%= render 'layouts/alerts' %>
                 <%= yield %>
               </div>
             </div>

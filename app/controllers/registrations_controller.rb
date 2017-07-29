@@ -1,5 +1,3 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout 'auth_layout', only: [:new, :create]
-
-
+  layout 'auth_layout'
 end

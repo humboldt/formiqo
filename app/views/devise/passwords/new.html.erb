@@ -1,16 +1,32 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<h1 class="title">Reset your password</h1>
+<div class="box">
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%# devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :email, class: "label" %>
+    <p class="control has-icons-left">
+      <%= f.input_field :email, autofocus: true, class: "input #{"is-danger" if f.object.errors.include?(:email)}"  %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+      <p class="help is-danger">
+        <%= f.object.errors[:email].join(", ") %>
+      </p>
+    </p>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="field">
+    <p class="control">
+    <%= f.submit "Reset password", class: "button is-primary" %>
+    </p>
   </div>
 <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<p class="has-text-centered">
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Log in", new_session_path(resource_name) %>
+<% end -%>
+</div>
