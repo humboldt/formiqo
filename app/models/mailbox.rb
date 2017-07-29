@@ -1,6 +1,5 @@
 class Mailbox < ApplicationRecord
-  before_create :generate_mailbox_token
-  before_validation :generate_mailbox_token
+  before_validation :generate_mailbox_token, on: :create
   # before_validation :set_name
   has_many :messages, dependent: :destroy
   belongs_to :user
