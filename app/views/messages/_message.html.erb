@@ -8,7 +8,10 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong><%= message.subject %></strong> <small><%= link_to message.email, "mailto: #{message.email}"%></small> <small><%= message.created_at %></small>
+        <strong><%= message.subject %></strong>
+        <small><%= link_to message.email, "mailto: #{message.email}"%></small>
+        <small><%= message.created_at %></small>
+        <%= is_new(message) %>
         <br>
         <%= message.body %>
       </p>

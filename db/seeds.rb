@@ -10,6 +10,8 @@ require 'ffaker'
 
 3.times.each do |mailbox|
   Mailbox.create(
+    user_id: 1,
+    site_url: "www.example.com",
     token: Digest::SHA1.hexdigest([Time.now, rand].join),
     name: FFaker::CheesyLingo.title,
     note: FFaker::CheesyLingo.sentence

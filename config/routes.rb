@@ -21,5 +21,8 @@ Rails.application.routes.draw do
 
   resources :mailboxes do
     resources :messages
+    member do
+      post 'clear_messages', to: 'mailboxes#clear_messages'
+    end
   end
 end

@@ -1,6 +1,6 @@
 class MailboxesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_mailbox, only: [:show, :edit, :update, :destroy]
+  before_action :set_mailbox, only: [:show, :edit, :update, :destroy, :clear_messages]
 
   layout 'mailbox_layout', only: [:show, :edit]
 
@@ -52,6 +52,11 @@ class MailboxesController < ApplicationController
     end
   end
 
+  def clear_messages
+    messages = @mailbox.messages
+    messages.destroy_all unless messages.nil?
+    redirect_to @mailbox, notice: 'Messages were successfully deleted.'
+  end
 
   private
     def set_mailbox

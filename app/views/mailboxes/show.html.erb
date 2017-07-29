@@ -24,4 +24,12 @@
 
 <hr/>
 
-<%= link_to "Delete this mailbox", @mailbox, method: :delete, class: "button is-danger is-outlined", data: { confirm: "Are you sure?" } %>
+
+<div class="field is-grouped">
+  <p class="control">
+    <%= link_to "Delete this mailbox", @mailbox, method: :delete, class: "button is-outlined", data: { confirm: "Are you sure?" } %>
+  </p>
+  <p class="control">
+    <%= link_to "Clear all messages", clear_messages_mailbox_path(@mailbox), method: :post, class: "button is-outlined", data: { confirm: "Are you sure?" } %>
+  </p>
+</div>

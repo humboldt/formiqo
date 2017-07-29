@@ -10,9 +10,10 @@ class MessagesController < ApplicationController
   def index
     @messages = @mailbox.messages
     @messages = @messages.today if params[:range] == 'today'
+    @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(50)
     respond_to do |format|
       format.html
-      format.csv { send_data @messages.to_csv }
+      format.csv { send_data @mailbox.messages.to_csv }
     end
   end
 
