@@ -48,6 +48,15 @@ a {
     border-color: #8972ab;
 }
 
+.pagination-link.is-current {
+  background-color: #8972ab;
+  border-color: #8972ab;
+}
+.pagination-previous:focus, .pagination-next:focus, .pagination-link:focus {
+  border-color: #8972ab;
+}
+
+
 code,
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
@@ -81,4 +90,8 @@ pre {
     font-weight: bold;
     color: #000;
   }
+}
+
+.messages {
+  margin-bottom: 20px;
 }
