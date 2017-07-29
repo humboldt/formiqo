@@ -9,6 +9,14 @@ class Message < ApplicationRecord
   default_scope { order(created_at: :desc) }
   scope :today, -> { where(created_at: ((DateTime.now - 24.hours)..DateTime.now)) }
 
+  def self.search(q)
+    if q
+      where("body LIKE :q OR subject LIKE :q OR email LIKE :q", q: "%#{q}%")
+    else
+      all
+    end
+  end
+
   def self.to_csv
     attrs = %w{email subject body created_at}
     CSV.generate do |csv|

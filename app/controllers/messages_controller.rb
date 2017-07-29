@@ -10,6 +10,9 @@ class MessagesController < ApplicationController
   def index
     @messages = @mailbox.messages
     @messages = @messages.today if params[:range] == 'today'
+    if params[:q]
+      @messages = @messages.search(params[:q])
+    end
     @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(50)
     respond_to do |format|
       format.html

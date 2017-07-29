@@ -9,16 +9,16 @@
       </p>
     </div>
     <div class="level-item">
+      <%= form_tag(mailbox_messages_path(@mailbox), method: :get) do %>
       <div class="field has-addons">
-        <p class="control">
-          <input class="input" type="text" placeholder="Find a message">
-        </p>
-        <p class="control">
-          <button class="button">
-            Search
-          </button>
-        </p>
+          <p class="control">
+            <%= text_field_tag :q, params[:q], placeholder: "Find a message", class: "input" %>
+          </p>
+          <p class="control">
+          <%= submit_tag 'Search', name: nil, class: "button" %>
+          </p>
       </div>
+      <% end %>
     </div>
   </div>
 
@@ -30,7 +30,11 @@
 </nav>
 
 <div class="messages">
-  <%= render @messages %>
+  <% if @messages.any? %>
+    <%= render @messages %>
+  <% else %>
+    <p class="no-messages has-text-centered">no messages</p>
+  <% end %>
 </div>
 
 <%= paginate @messages %>
