@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # devise_scope :user do
   #   get 'login', to: 'sessions#new'
   #   get 'register', to: 'registrations#new'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
 
   post '/m/:token', to: 'messages#create', as: :external_message
 
+  resources :subscriptions
   resources :mailboxes do
     resources :messages
     member do

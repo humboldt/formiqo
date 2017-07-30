@@ -1,0 +1,76 @@
+
+<h1 class="title">Available plans</h1>
+<div class="columns">
+  <% @plans.each_slice(2) do |plans| %>
+    <% plans.each do |plan| %>
+      <div class="column is-3">
+        <div class="card">
+
+          <div class="card-content">
+            <div class="media">
+
+              <div class="media-content">
+                <p class="title is-4"><%= plan.name %></p>
+                <p class="subtitle is-6">$ <%= plan.cost %></p>
+              </div>
+            </div>
+
+            <div class="content">
+              <%= plan.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<hr/>
+<%= simple_form_for(Subscription.new) do |form| %>
+<div class="field">
+  <div class="columns">
+
+    <div class="column is-3">
+      <!-- <label for="" class="label">Plan</label> -->
+      <p class="control has-icons-left is-expanded">
+        <%= form.input_field :plan_id,
+         collection: Plan.all.map {|plan| ["#{plan.name} - $#{plan.cost}", plan.id]},
+         wrapper_html: { class: ' select is-fullwidth' }, class: 'input', label: false, prompt: 'Select a plan' %>
+        <span class="icon is-small is-left">
+          <i class="fa fa-bars"></i>
+        </span>
+      </p>
+    </div>
+
+    <div class="column is-3">
+      <!-- <label for="" class="label">Plan</label> -->
+      <p class="control has-icons-left is-expanded">
+        <%= form.input_field :duration,
+         collection: [1, 2, 3, 6, 12].map {|m| ["#{pluralize(m, 'month')}", m]},
+         wrapper_html: { class: ' select is-fullwidth' }, class: 'input', label: false, prompt: 'Add months' %>
+        <span class="icon is-small is-left">
+          <i class="fa fa-clock-o"></i>
+        </span>
+      </p>
+    </div>
+    <div class="column is-3">
+      <!-- <label for="" class="label">&nbsp;</label> -->
+      <div class="field">
+        <p class="control">
+          <%= form.submit "Continue", class: "button is-primary" %>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<% end %>
+
+<!-- <div class="columns">
+  <div class="column">
+    <div class="content is-small">
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque.</p>
+
+          </div>
+  </div>
+</div> -->

@@ -26,6 +26,7 @@
   <div id="navMenuExample" class="navbar-menu">
     <div class="navbar-start">
       <%= link_to "Home", mailboxes_path, class: "navbar-item" %>
+      <%= link_to current_user.subscription.plan.name, mailboxes_path, class: "navbar-item" %>
       <div class="navbar-item has-dropdown is-hoverable">
         <div class="navbar-link">
           More
@@ -44,19 +45,19 @@
               </div>
             </div>
           </a>
-          <a class="navbar-item " href="http://bulma.io/extensions/">
-            <div class="level is-mobile">
-              <div class="level-left">
-                <div class="level-item">
-                  <p>
-                    <strong>Payment</strong>
-                    <br>
-                    <small>Your payment plan</small>
-                  </p>
-                </div>
+          <%= link_to subscriptions_path, class: "navbar-item" do %>
+          <div class="level is-mobile">
+            <div class="level-left">
+              <div class="level-item">
+                <p>
+                  <strong>Payment</strong>
+                  <br>
+                  <small>Your payment plan</small>
+                </p>
               </div>
             </div>
-          </a>
+          </div>
+          <% end %>
           <%= link_to edit_user_registration_path, class: "navbar-item" do %>
           <div class="level is-mobile">
             <div class="level-left">
