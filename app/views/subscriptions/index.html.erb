@@ -1,10 +1,11 @@
 <h1 class="title">Subscription settings</h1>
-<%= simple_form_for(Subscription.new) do |form| %>
-<div class="">
+
+
   <div class="columns">
 
     <div class="column is-3">
-      <div class="field">
+      <%= simple_form_for(@subscription) do |form| %>
+        <div class="field">
         <p class="control has-icons-left is-expanded">
           <%= form.input_field :plan_id,
            collection: @plans.map {|plan| ["#{plan.name} - $#{plan.cost}", plan.id]},
@@ -14,28 +15,45 @@
           </span>
         </p>
       </div>
-
-      <div class="field">
+        <div class="field">
         <p class="control has-icons-left is-expanded">
           <%= form.input_field :duration,
-           collection: [1, 2, 3, 6, 12].map {|m| ["#{pluralize(m, 'month')}", m]},
+           collection: Plan::RANGE.map {|m| ["#{pluralize(m, 'month')}", m]},
            wrapper_html: { class: ' select is-fullwidth' }, class: 'input', label: false, prompt: 'Add months' %>
           <span class="icon is-small is-left">
             <i class="fa fa-clock-o"></i>
           </span>
         </p>
       </div>
-      <div class="field">
-        <p class="control">
-          <%= form.submit "Continue", class: "button is-primary is-fullwidth", id: "subscribe" %>
-          <a class="button is-loading is-primary" id="loading-pay-btn">Loading</a>
-        </p>
+        <div class="field">
+          <p class="control">
+            <%= form.submit "Continue", class: "button is-primary is-fullwidth", id: "subscribe" %>
+            <a class="button is-loading is-primary" id="loading-pay-btn">Loading</a>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="column is-3">
+      <div class="card current-plan">
+        <span id="cpl">current plan</span>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"><%= current_user.subscription.plan.name %></p>
+              <p class="subtitle is-6">$ <%= current_user.subscription.plan.cost %></p>
+            </div>
+          </div>
+
+          <div class="content">
+            <small>Expires: </small><br/>
+            <small><%= current_user.subscription.end_date.strftime("%I:%M %p - %m %b %Y") %></small>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
-</div>
-<% end %>
+
+
 <hr/>
 <h1 class="title">Available plans</h1>
 <div class="columns">

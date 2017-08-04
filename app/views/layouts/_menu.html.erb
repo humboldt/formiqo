@@ -1,4 +1,5 @@
 <aside class="menu">
+  <%= subscription_expiration(current_user) %>
   <div class="block">
     <%= link_to new_mailbox_path, { class: "button is-primary is-fullwidth" } do %>
       <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;New mailbox

@@ -93,7 +93,6 @@ pre {
   }
 }
 
-
 .active-scope {
   a {
     font-weight: bold;
@@ -109,10 +108,27 @@ pre {
   display: none;
 }
 
-.card:hover {
+.card:hover, .current-plan {
   background: #8972ab;
-  .content, .title, .subtitle {
-      color: #fff !important;
+  .content, .title, .subtitle, #cpl {
+    color: #fff !important;
   }
+}
 
+.current-plan {
+  position: relative;
+  background: #8972ab;
+  .card-content {
+    padding: 0.8em;
+  }
+  #cpl {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 11px;
+  }
+}
+
+.menu-alert {
+  margin-bottom: 15px;
 }

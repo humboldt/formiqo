@@ -16,13 +16,12 @@
 
     <div class="section">
       <div class="container">
-        <%= render 'layouts/alerts' %>
-
         <div class="columns">
           <div class="column is-2">
             <%= render "layouts/menu"%>
           </div>
           <div class="column">
+            <%= render 'layouts/alerts' %>
             <%= yield %>
           </div>
         </div>
