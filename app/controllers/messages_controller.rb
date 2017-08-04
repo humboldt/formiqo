@@ -48,6 +48,7 @@ class MessagesController < ApplicationController
       else
         @mailbox = Mailbox.find_by(token: params[:mailbox_id])
       end
+      redirect_to root_path unless @mailbox
     end
 
     def message_params

@@ -3,7 +3,7 @@ class Mailbox < ApplicationRecord
   # before_validation :set_name
   has_many :messages, dependent: :destroy
   belongs_to :user
-  validates :name, :site_url, presence: true
+  validates :name, :site_url, presence: true, uniqueness: { scope: :user_id }
 
   def to_param
     token
