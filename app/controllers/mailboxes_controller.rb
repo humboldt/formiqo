@@ -19,14 +19,15 @@ class MailboxesController < ApplicationController
 
   def create
     @mailbox = current_user.mailboxes.build(mailbox_params)
-
-    respond_to do |format|
-      if @mailbox.save
-        format.html { redirect_to @mailbox, notice: 'Mailbox was successfully created.' }
-        format.json { render :show, status: :created, location: @mailbox }
-      else
-        format.html { render :new }
-        format.json { render json: @mailbox.errors, status: :unprocessable_entity }
+    unless mailbox_limit_reached
+      respond_to do |format|
+        if @mailbox.save
+          format.html { redirect_to @mailbox, notice: 'Mailbox was successfully created.' }
+          format.json { render :show, status: :created, location: @mailbox }
+        else
+          format.html { render :new }
+          format.json { render json: @mailbox.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -58,6 +59,13 @@ class MailboxesController < ApplicationController
   end
 
   private
+    def mailbox_limit_reached
+      if current_user.mailboxes.length > current_user.subscription.plan.n_mailboxes
+        redirect_to root_path, notice: "Upgrade your plan to add more mailboxes!"
+        true
+      end
+    end
+
     def set_mailbox
       @mailbox = current_user.mailboxes.find_by(token: params[:id])
     end

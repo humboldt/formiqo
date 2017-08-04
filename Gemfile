@@ -52,6 +52,8 @@ gem 'gravatar_image_tag'
 gem 'devise'
 gem 'simple_form'
 gem 'kaminari'
+gem 'paypal-sdk-rest'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

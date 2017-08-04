@@ -32,4 +32,66 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
     $('.navbar-menu').slideToggle('fast');
   })
+
+  // $.getScript('https://www.paypalobjects.com/api/checkout.js', function() {})
+
+  var preparePayButton = function () {
+    // if ($('#paypal-button').length) {
+
+    // $.getScript('https://www.paypalobjects.com/api/checkout.js', function() {
+      var CREATE_PAYMENT_URL  = 'http://localhost:3000/checkout';
+      var EXECUTE_PAYMENT_URL = 'http://localhost:3000/execute';
+
+      paypal.Button.render({
+
+          env: 'sandbox', // Or 'sandbox'
+
+          commit: true, // Show a 'Pay Now' button
+          style: {
+              label: 'pay', // checkout | credit | pay
+              size:  'small',    // small | medium | responsive
+              shape: 'rect',     // pill | rect
+              color: 'blue'      // gold | blue | silver
+          },
+          payment: function() {
+              return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                  return data.paymentID;
+              });
+          },
+
+          onAuthorize: function(data) {
+              return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                  paymentID: data.paymentID,
+                  payerID:   data.payerID
+              }).then(function(res) {
+                // console.log(res);
+                // window.alert("Payment is compelete")
+                  // The payment is complete!
+                  // You can now show a confirmation message to the customer
+              });
+          }
+
+      }, '#paypal-button');
+
+      // $('#loading-pay-btn').css('display', 'none')
+      // $('#paypal-button').css('display', 'block')
+    // })
+
+  }
+
+  // if (window.location.pathname == "/subscriptions") {
+  //   preparePayButton()subscribe
+  // }
+
+  $('.plan').click(function() {
+    let id = $(this).attr('id')
+    $('#subscription_plan_id').val(id)
+  })
+
+  $("#subscribe").on('click', function() {
+    $(this).css('display', 'none')
+    $("#loading-pay-btn").css('display', 'block')
+  })
+
+
 })

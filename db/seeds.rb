@@ -27,5 +27,6 @@ end
   )
 end
 
+# Plan.create(name: "Plan 0", description: "3 mailboxes", cost: 0, n_mailboxes: 1)
 # Plan.create(name: "Plan 1", description: "3 mailboxes", cost: 4.99, n_mailboxes: 3)
 # Plan.create(name: "Plan 2", description: "10 mailboxes", cost: 9.99, n_mailboxes: 10)

@@ -104,3 +104,15 @@ pre {
 .messages {
   margin-bottom: 20px;
 }
+
+#loading-pay-btn {
+  display: none;
+}
+
+.card:hover {
+  background: #8972ab;
+  .content, .title, .subtitle {
+      color: #fff !important;
+  }
+
+}

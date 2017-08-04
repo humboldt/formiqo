@@ -26,7 +26,7 @@
   <div id="navMenuExample" class="navbar-menu">
     <div class="navbar-start">
       <%= link_to "Home", mailboxes_path, class: "navbar-item" %>
-      <%= link_to current_user.subscription.plan.name, mailboxes_path, class: "navbar-item" %>
+      <%= link_to current_user.subscription.end_date, mailboxes_path, class: "navbar-item" %>
       <div class="navbar-item has-dropdown is-hoverable">
         <div class="navbar-link">
           More
@@ -45,12 +45,12 @@
               </div>
             </div>
           </a>
-          <%= link_to subscriptions_path, class: "navbar-item" do %>
+          <%= link_to subscriptions_path, class: "navbar-item", id: "link-to-pay" do %>
           <div class="level is-mobile">
             <div class="level-left">
               <div class="level-item">
                 <p>
-                  <strong>Payment</strong>
+                  <strong>Subscription Settings</strong>
                   <br>
                   <small>Your payment plan</small>
                 </p>

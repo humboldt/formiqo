@@ -28,4 +28,8 @@ Rails.application.routes.draw do
       post 'clear_messages', to: 'mailboxes#clear_messages'
     end
   end
+
+  # post '/checkout', to: 'payment#checkout'
+  get '/execute', to: 'payment#execute'
+
 end
