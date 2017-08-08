@@ -4,6 +4,7 @@ class Mailbox < ApplicationRecord
   has_many :messages, dependent: :destroy
   belongs_to :user
   validates :name, :site_url, presence: true, uniqueness: { scope: :user_id }
+  validate :allowed_fields_amount
 
   def to_param
     token
@@ -16,5 +17,12 @@ class Mailbox < ApplicationRecord
 
     def set_name
       self.name = "my new form" if name.blank?
+    end
+
+    def allowed_fields_amount
+      fields = allowed_fields.gsub(" ", "").split(",")
+      if fields.length > 10
+        errors.add(:allowed_fields, "max 10 fields")
+      end
     end
 end
