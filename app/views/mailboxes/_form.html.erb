@@ -20,6 +20,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :site_url, "Allowed fields", class: "label" %>
+    <div class="control">
+      <%= form.input_field :allowed_fields, id: :mailbox_allowed_fields, class: "input", placeholder: "email, phone, body" %>
+    </div>
+  </div>
+
+  <div class="field">
     <%= form.label :site_url, "Site Url", class: "label" %>
     <div class="control">
       <%= form.input_field :site_url, id: :mailbox_site_url, class: "input", placeholder: "username.github.io" %>

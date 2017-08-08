@@ -1,19 +1,20 @@
 
 <article class="media">
+  <% if message.message_fields.key? "email" %>
   <figure class="media-left">
     <p class="image is-64x64">
-      <%= gravatar_image_tag(message.email) %>
+      <%= gravatar_image_tag(message.message_fields["email"])%>
     </p>
   </figure>
+  <% end %>
   <div class="media-content">
     <div class="content">
       <p>
-        <strong><%= message.subject %></strong>
-        <small><%= link_to message.email, "mailto: #{message.email}"%></small>
+        <small><%= link_to message.message_fields["email"], "mailto: #{message.message_fields["email"]}"%></small>
         <small><%= message.created_at %></small>
         <%= is_new(message) %>
         <br>
-        <%= message.body %>
+        <%= structured_fields_for(message) %>
       </p>
     </div>
   </div>

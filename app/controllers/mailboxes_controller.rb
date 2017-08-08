@@ -71,6 +71,6 @@ class MailboxesController < ApplicationController
     end
 
     def mailbox_params
-      params.require(:mailbox).permit(:token, :site_url, :name, :note)
+      params.require(:mailbox).permit(:token, :site_url, :name, :note, :allowed_fields)
     end
 end

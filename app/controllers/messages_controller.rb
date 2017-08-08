@@ -4,12 +4,26 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
+
+
   layout 'mailbox_layout', only: [:index]
 
   def index
     @messages = @mailbox.messages
     @messages = @messages.today if params[:range] == 'today'
+
     @messages = @messages.search(params[:q]) if params[:q]
+
+    # if params[:q]
+    #
+    #   fields = @mailbox.allowed_fields.gsub(" ", "").split(",")
+    #   fields.each do |f|
+    #     @messages.where("message_fields -> :key LIKE :value", key: "#{f}", value: "%#{q}%")
+    #   end
+    # end
+
+
+
     @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(50)
     respond_to do |format|
       format.html
@@ -19,7 +33,15 @@ class MessagesController < ApplicationController
 
   def create
     respond_to do |format|
-      if @mailbox.messages.create(message_params)
+      fields = @mailbox.allowed_fields.gsub(" ", "").split(",")
+      h = {}
+      fields.each do |f|
+        h[f] = params[f]
+      end
+      attrs = message_params.tap do |p|
+        p["message_fields"] = h
+      end
+      if @mailbox.messages.create(attrs)
         format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
       else
@@ -52,6 +74,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.permit(:email, :subject, :body, :comment)
+      params.permit(:comment, message_fields: {})
     end
 end

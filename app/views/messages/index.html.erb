@@ -11,8 +11,8 @@
     <div class="level-item">
       <%= form_tag(mailbox_messages_path(@mailbox), method: :get) do %>
       <div class="field has-addons">
-          <p class="control">
-            <%= text_field_tag :q, params[:q], placeholder: "Find a message", class: "input" %>
+          <p class="control is-expanded">
+            <%= text_field_tag :q, params[:q], placeholder: "key: search term", class: "input" %>
           </p>
           <p class="control">
           <%= submit_tag 'Search', name: nil, class: "button" %>
