@@ -46,7 +46,7 @@ $(document).on('turbolinks:load', function() {
 
   $("#toggle-view").on('click', function(e) {
     e.preventDefault();
-    $(".message-fields").toggle( "slow")
+    $(".message-fields").toggle("fast")
   })
 
 })
