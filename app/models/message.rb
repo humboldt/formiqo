@@ -6,7 +6,8 @@ class Message < ApplicationRecord
   validates_length_of :comment, :in => 0..1
 
   default_scope { order(created_at: :desc) }
-  scope :today, -> { where(created_at: ((DateTime.now - 24.hours)..DateTime.now)) }
+  scope :today, -> { where(created_at: ((Time.zone.now - 24.hours)..Time.zone.now)) }
+  scope :week, -> { where(created_at: ((Time.zone.now - 7.days)..Time.zone.now)) }
 
 
   def self.search(q)
@@ -21,7 +22,7 @@ class Message < ApplicationRecord
 
   def self.to_csv
     CSV.generate do |csv|
-      all.each do |msg|
+      limit(1000).each do |msg|
         csv << [msg.mailbox.name] + msg.attributes["message_fields"].values_at(*msg.mailbox.allowed_fields.gsub(" ", "").split(","))
       end
     end

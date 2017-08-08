@@ -7,7 +7,7 @@ class Subscription < ApplicationRecord
   validates_presence_of :plan_id
 
   def prolong_for(n)
-    update!(end_date: DateTime.now + n.months)
+    update!(end_date: Time.zone.now + n.months)
   end
 
   def change_plan(new_plan_id)

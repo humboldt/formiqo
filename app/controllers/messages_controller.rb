@@ -11,18 +11,8 @@ class MessagesController < ApplicationController
   def index
     @messages = @mailbox.messages
     @messages = @messages.today if params[:range] == 'today'
-
+    @messages = @messages.week if params[:range] == 'week'
     @messages = @messages.search(params[:q]) if params[:q]
-
-    # if params[:q]
-    #
-    #   fields = @mailbox.allowed_fields.gsub(" ", "").split(",")
-    #   fields.each do |f|
-    #     @messages.where("message_fields -> :key LIKE :value", key: "#{f}", value: "%#{q}%")
-    #   end
-    # end
-
-
 
     @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(50)
     respond_to do |format|
