@@ -21,6 +21,6 @@ module Formiqo
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
-    end    
+    end
   end
 end

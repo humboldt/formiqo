@@ -8,13 +8,14 @@ class Message < ApplicationRecord
   default_scope { order(created_at: :desc) }
   scope :today, -> { where(created_at: ((Time.zone.now - 24.hours)..Time.zone.now)) }
   scope :week, -> { where(created_at: ((Time.zone.now - 7.days)..Time.zone.now)) }
+  scope :month, -> { where(created_at: ((Time.zone.now - 1.month)..Time.zone.now)) }
 
 
   def self.search(q)
     if !q.blank?
       k, v = key_val_of(q)
-      st = "message_fields ->> '%{key}' = ?" % {key: k}
-      where(st, v)
+      st = "message_fields ->> '%{key}' LIKE ?" % {key: k}
+      where(st, "%#{v}%")
     else
       all
     end

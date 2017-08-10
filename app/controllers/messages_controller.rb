@@ -1,11 +1,10 @@
 class MessagesController < ApplicationController
   include ApplicationHelper
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :create
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
-
-
+  load_and_authorize_resource :message, through: :mailbox
   layout 'mailbox_layout', only: [:index]
 
   def index
@@ -25,12 +24,9 @@ class MessagesController < ApplicationController
     respond_to do |format|
       fields = @mailbox.allowed_fields.gsub(" ", "").split(",")
       h = {}
-      fields.each do |f|
-        h[f] = params[f]
-      end
-      attrs = message_params.tap do |p|
-        p["message_fields"] = h
-      end
+      fields.each { |f| h[f] = params[f] }
+      attrs = message_params.tap { |p| p["message_fields"] = h }
+
       if @mailbox.messages.create(attrs)
         format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
@@ -55,11 +51,10 @@ class MessagesController < ApplicationController
     end
 
     def set_mailbox
-      if params[:token]
-        @mailbox = Mailbox.find_by(token: params[:token])
-      else
-        @mailbox = Mailbox.find_by(token: params[:mailbox_id])
-      end
+      by = params[:token] || params[:mailbox_id]
+
+      @mailbox = Mailbox.find_by(token: by)
+
       redirect_to root_path unless @mailbox
     end
 

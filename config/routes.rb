@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  # devise_scope :user do
-  #   get 'login', to: 'sessions#new'
-  #   get 'register', to: 'registrations#new'
-  # end
+  get 'pages/index'
+  get 'pages/help'
+  get 'pages/terms'
 
   devise_for :users,
     controllers: {
@@ -15,15 +14,18 @@ Rails.application.routes.draw do
       sign_in: 'login',
       sign_out: 'logout',
       sign_up: 'register'
-    }
+    },
+    skip: [:sesstions] do
+      get "/register"   => "users/registrations#new",   :as => :new_user_registration
+    end
 
-  root to: 'mailboxes#index'
+  root to: 'pages#index'
 
   post '/m/:token', to: 'messages#create', as: :external_message
 
-  resources :subscriptions
+  resources :subscriptions, only: [:index, :create, :update]
   resources :mailboxes do
-    resources :messages
+    resources :messages, only: [:index, :create, :destroy]
     member do
       post 'clear_messages', to: 'mailboxes#clear_messages'
     end

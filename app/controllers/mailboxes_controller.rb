@@ -2,9 +2,18 @@ class MailboxesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_mailbox, only: [:show, :edit, :update, :destroy, :clear_messages]
   layout 'mailbox_layout', only: [:show, :edit]
+  load_and_authorize_resource
 
   def index
     @mailboxes = current_user.mailboxes
+    @today, @month, @week, @all_time = 0, 0, 0, 0
+    @mailboxes.each do |mailbox|
+      @today += mailbox.messages.today.length
+      @month += mailbox.messages.week.length
+      @week += mailbox.messages.month.length
+      @all_time += mailbox.messages.length
+    end
+
   end
 
   def show

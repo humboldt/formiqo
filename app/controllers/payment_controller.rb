@@ -1,13 +1,13 @@
 require 'paypal-sdk-rest'
-include PayPal::SDK::REST
 
 class PaymentController < ApplicationController
+  before_action :authenticate_user!
 
   def index
   end
 
   def execute
-    payment = Payment.find(params[:paymentId])
+    payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
 
     if payment.execute(payer_id: params[:PayerID])
       current_user.subscription.prolong_for(cookies.signed[:duration])
