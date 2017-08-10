@@ -140,3 +140,16 @@ ul.message-fields {
 #toggle-view:active {
   border-color: none;
 }
+
+.hero.is-theme {
+  color: whitesmoke;
+}
+.hero.is-theme.is-bold {
+  background-image: linear-gradient(141deg, #8972ab 0%, #6f5a8e 71%, #8972ab 100%);
+}
+.hero.is-theme .title {
+    color: whitesmoke;
+}
+.hero.is-theme a:not(.button), .hero.is-theme strong {
+    color: inherit;
+}
