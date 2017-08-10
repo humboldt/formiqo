@@ -47,6 +47,7 @@ GEM
     bulma-rails (0.4.3)
       sass (~> 3.2)
     byebug (9.0.6)
+    cancancan (2.0.0)
     capybara (2.14.4)
       addressable
       mime-types (>= 1.16)
@@ -126,6 +127,8 @@ GEM
     puma (3.9.1)
     rack (2.0.3)
     rack-cors (0.4.1)
+    rack-mini-profiler (0.10.5)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.2)
@@ -220,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   bulma-rails (~> 0.4.3)
   byebug
+  cancancan (~> 2.0)
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
@@ -234,6 +238,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   rack-cors
+  rack-mini-profiler
   rails (~> 5.1.2)
   redcarpet
   sass-rails (~> 5.0)

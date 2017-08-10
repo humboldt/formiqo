@@ -32,6 +32,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'ffaker'
+
 end
 
 gem 'gravatar_image_tag'
@@ -40,7 +41,7 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'paypal-sdk-rest'
 gem 'rack-cors', :require => 'rack/cors'
-
-
+gem 'cancancan', '~> 2.0'
+gem 'rack-mini-profiler'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
