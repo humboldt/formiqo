@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_one :subscription
   has_one :plan, through: :subscriptions
 
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates_format_of :email,
+    :with => EMAIL_REGEX
 
   def remember_me
     true

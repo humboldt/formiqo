@@ -1,4 +1,4 @@
-require 'paypal-sdk-rest'
+
 
 PayPal::SDK::REST.set_config(
   :mode => "sandbox", # "sandbox" or "live"

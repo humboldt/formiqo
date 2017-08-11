@@ -66,15 +66,24 @@
                 </div>
               </div>
             </nav>
-
           </div>
-
         </div>
           <%= yield %>
       </section>
 
 
-
+      <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <p>
+              <a href="/">&copy; formiqo</a> /
+              <%= link_to "Terms", pages_terms_path %> /
+              <%= link_to "Privacy Policy", pages_terms_path %> /
+              <a href="mailto: support@formiqo.com">Contact</a>
+            </p>
+          </div>
+        </div>
+      </footer>
 
   </body>
 </html>

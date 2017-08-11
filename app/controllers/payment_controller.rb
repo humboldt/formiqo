@@ -1,21 +1,25 @@
-require 'paypal-sdk-rest'
 
 class PaymentController < ApplicationController
   before_action :authenticate_user!
+
 
   def index
   end
 
   def execute
-    payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
+    # if params[:paymentId]
+      payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
 
-    if payment.execute(payer_id: params[:PayerID])
-      current_user.subscription.prolong_for(cookies.signed[:duration])
-      clear_stash
-      redirect_to root_path, notice: "Subscribed successfully"
-    else
-      redirect_to root_path, error: "Something went wrong"
-    end
+      if payment.execute(payer_id: params[:PayerID])
+        current_user.subscription.prolong_for(cookies.signed[:duration])
+        clear_stash
+        redirect_to root_path, notice: "Subscribed successfully"
+      else
+        redirect_to root_path, error: "Something went wrong"
+      end
+    # else
+    #   redirect_to root_path
+    # end
   end
 
   private

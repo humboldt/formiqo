@@ -15,7 +15,10 @@ class SubscriptionsController < ApplicationController
     @duration = params[:subscription][:duration]
 
     if !@new_plan_id.blank? && !@duration.blank?
-      @amount = Plan.find(@new_plan_id).cost * @duration.to_f
+      if Plan.exists?(id: @new_plan_id)
+        @amount = Plan.find(@new_plan_id).cost * @duration.to_f
+      end
+
       @payment = PaymentService.new(@amount)
       if @payment.accept
         stash_details(@new_plan_id, @duration, @amount)
@@ -34,15 +37,14 @@ class SubscriptionsController < ApplicationController
     end
 
     def set_subscription
-      @subscription = if current_user.subscription
-        current_user.subscription
-      else
-        current_user.subscription.new
-      end
+      @subscription = current_user.subscription
     end
 
     def extract_link(data)
       data.links.find { |link| link.rel == 'approval_url' }.href
+    end
+
+    def proceed_payment(amount)
     end
 
     def stash_details(npid, drt, amnt)
