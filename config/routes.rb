@@ -1,25 +1,17 @@
 Rails.application.routes.draw do
-
-  get 'pages/index'
-  get 'pages/help'
-  get 'pages/terms'
+  root to: 'pages#index'
 
   devise_for :users,
     controllers: {
       sessions: 'sessions',
       registrations: 'registrations',
-      passwords: 'passwords',
+      passwords: 'passwords'
     },
     path_names: {
       sign_in: 'login',
       sign_out: 'logout',
       sign_up: 'register'
-    },
-    skip: [:sesstions] do
-      get "/register"   => "users/registrations#new",   :as => :new_user_registration
-    end
-
-  root to: 'pages#index'
+    }
 
   post '/m/:token', to: 'messages#create', as: :external_message
 
@@ -33,5 +25,9 @@ Rails.application.routes.draw do
 
   # post '/checkout', to: 'payment#checkout'
   get '/execute', to: 'payment#execute'
+  get 'pages/index'
+  get 'pages/help'
+  get 'pages/terms'
 
+  get '*path', to: 'application#e_404'
 end
