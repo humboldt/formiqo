@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806004258) do
+ActiveRecord::Schema.define(version: 20170811140819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20170806004258) do
     t.bigint "user_id"
     t.string "site_url"
     t.string "allowed_fields"
+    t.boolean "should_reply", default: false
+    t.text "reply_body"
     t.index ["user_id"], name: "index_mailboxes_on_user_id"
   end
 

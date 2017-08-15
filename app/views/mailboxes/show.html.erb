@@ -1,9 +1,3 @@
-
-<p>
-  <strong>Redirect url:</strong>
-  <%= link_to @mailbox.site_url, url_link(@mailbox.site_url), target: '_blank' %>
-</p>
-
 <p>
   <strong>Name:</strong>
   <%= @mailbox.name %>
@@ -13,6 +7,17 @@
   <strong>Note:</strong>
   <%= @mailbox.note %>
 </p>
+
+<p>
+  <strong>Redirect url:</strong>
+  <%= link_to @mailbox.site_url, url_link(@mailbox.site_url), target: '_blank' %>
+</p>
+
+<p>
+  <strong>Reply to submitter:</strong>
+  <%= @mailbox.should_reply ? "yes" : "no" %>
+</p>
+
 
 <p>
   <strong>Form body:</strong>

@@ -4,7 +4,9 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
+  load_and_authorize_resource :mailbox
   load_and_authorize_resource :message, through: :mailbox
+  skip_authorize_resource only: :create
   layout 'mailbox_layout', only: [:index]
 
   def index
@@ -18,6 +20,7 @@ class MessagesController < ApplicationController
       format.html
       format.csv { send_data @mailbox.messages.to_csv }
     end
+
   end
 
   def create

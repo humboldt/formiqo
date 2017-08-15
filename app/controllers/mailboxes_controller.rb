@@ -69,9 +69,8 @@ class MailboxesController < ApplicationController
 
   private
     def mailbox_limit_reached
-      if current_user.mailboxes.length > current_user.subscription.plan.n_mailboxes
+      if current_user.reached_mailbox_limit?
         redirect_to root_path, notice: "Upgrade your plan to add more mailboxes!"
-        true
       end
     end
 
@@ -80,6 +79,6 @@ class MailboxesController < ApplicationController
     end
 
     def mailbox_params
-      params.require(:mailbox).permit(:token, :site_url, :name, :note, :allowed_fields)
+      params.require(:mailbox).permit(:token, :site_url, :name, :note, :allowed_fields, :should_reply, :reply_body)
     end
 end

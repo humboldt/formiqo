@@ -32,10 +32,6 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-    def message_params
-      params.require(:subscription).permit(:user_id, :plan_id, :duration)
-    end
-
     def set_subscription
       @subscription = current_user.subscription
     end

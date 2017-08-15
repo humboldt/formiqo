@@ -43,10 +43,22 @@ $(document).on('turbolinks:load', function() {
     $("#loading-pay-btn").css('display', 'block')
   })
 
-
   $("#toggle-view").on('click', function(e) {
     e.preventDefault();
     $(".message-fields").toggle("fast")
   })
+
+  var should_reply = $("#mailbox_should_reply")
+  should_reply.on('click', function() {
+    if ( $(this).is(':checked') ) {
+      $("#mailbox_reply_body").prop('disabled', false)
+    } else {
+      $("#mailbox_reply_body").prop('disabled', true)
+    }
+  })
+  
+  if ( should_reply.is(':checked') ) {
+    $("#mailbox_reply_body").prop('disabled', false)
+  }
 
 })

@@ -1,8 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   layout 'auth_layout', only: [:new, :create]
 
-
-
   def create
       build_resource(sign_up_params)
 
