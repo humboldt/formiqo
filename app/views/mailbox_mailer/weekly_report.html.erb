@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <style>
+      .content {
+        padding: 7px;
+        font-family: "Open Sans", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#"><img src="http://i.imgur.com/mVdbyOf.png" alt="formiqo" width="112" height="28"></a>
+
+    <p class="content">
+      <%= link_to "#{mailbox.name}", @mailbox %><br/>
+
+      You received <%= pluralize(@mailbox.messages.length, 'message') %>
+    </p>
+  </body>
+</html>

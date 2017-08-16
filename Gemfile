@@ -43,5 +43,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'cancancan', '~> 2.0'
 gem 'rack-mini-profiler'
 gem 'figaro'
+gem 'mailgun-ruby', '~>1.1.6'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

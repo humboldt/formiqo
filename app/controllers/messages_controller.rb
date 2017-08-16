@@ -30,7 +30,11 @@ class MessagesController < ApplicationController
       fields.each { |f| h[f] = params[f] }
       attrs = message_params.tap { |p| p["message_fields"] = h }
 
-      if @mailbox.messages.create(attrs)
+      @message = @mailbox.messages.create(attrs)
+      if @message
+        if @mailbox.should_reply
+          MailboxMailer.reply(@message).deliver_later
+        end
         format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
       else
