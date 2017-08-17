@@ -153,3 +153,7 @@ ul.message-fields {
 .hero.is-theme a:not(.button), .hero.is-theme strong {
     color: inherit;
 }
+
+.hero.is-90vh  {
+  min-height: 90vh !important;
+}

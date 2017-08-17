@@ -70,7 +70,7 @@ class MailboxesController < ApplicationController
   private
     def mailbox_limit_reached
       if current_user.reached_mailbox_limit?
-        redirect_to root_path, notice: "Upgrade your plan to add more mailboxes!"
+        redirect_to root_path, notice: "Mailbox limit reached."
       end
     end
 
