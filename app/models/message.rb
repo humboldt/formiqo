@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   store_accessor :message_fields
   attr_accessor :comment
+  after_create :notify
 
   belongs_to :mailbox
   validates_length_of :comment, :in => 0..1
@@ -24,7 +25,9 @@ class Message < ApplicationRecord
   def self.to_csv
     CSV.generate do |csv|
       limit(1000).each do |msg|
-        csv << [msg.mailbox.name] + msg.attributes["message_fields"].values_at(*msg.mailbox.allowed_fields.gsub(" ", "").split(","))
+        csv << [msg.mailbox.name] + msg.attributes["message_fields"]
+        .values_at(*msg.mailbox.allowed_fields.gsub(" ", "")
+        .split(","))
       end
     end
   end
@@ -37,6 +40,10 @@ class Message < ApplicationRecord
       key = st.remove(value).sub(":", "").strip
 
       [key, value]
+    end
+
+    def notif
+      MailboxMailer.reply(self).deliver_later if mailbox.should_reply
     end
 
 end

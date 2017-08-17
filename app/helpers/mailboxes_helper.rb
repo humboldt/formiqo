@@ -18,10 +18,12 @@ module MailboxesHelper
       <form action="#{action_url}" accept-charset="UTF-8" method="post">
         <input name="utf8" type="hidden" value="✓">'
         #{inputs}
+        <!-- keep this -->
         <div style="width: 1px; height: 1px; overflow: hidden; display: none;">
           Please leave following field blank:
           <textarea name="comment"></textarea>
         </div>
+        <!-- keep this -->
 
         <div class="actions">
           <input type="submit" value="Send">

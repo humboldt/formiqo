@@ -15,10 +15,10 @@ class MessagesController < ApplicationController
     @messages = @messages.week if params[:range] == 'week'
     @messages = @messages.search(params[:q]) if params[:q]
 
-    @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(50)
+    @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(30)
     respond_to do |format|
       format.html
-      format.csv { send_data @mailbox.messages.to_csv }
+      format.csv { send_data @messages.to_csv }
     end
 
   end
@@ -30,11 +30,11 @@ class MessagesController < ApplicationController
       fields.each { |f| h[f] = params[f] }
       attrs = message_params.tap { |p| p["message_fields"] = h }
 
-      @message = @mailbox.messages.create(attrs)
-      if @message
-        if @mailbox.should_reply
-          MailboxMailer.reply(@message).deliver_later
-        end
+
+      if @mailbox.messages.create(attrs)
+        # if @mailbox.should_reply
+        #   MailboxMailer.reply(@message).deliver_later
+        # end
         format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
       else

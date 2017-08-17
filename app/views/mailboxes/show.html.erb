@@ -1,29 +1,31 @@
-<p>
-  <strong>Name:</strong>
-  <%= @mailbox.name %>
-</p>
+<div class="columns">
+  <div class="column">
+    <p>
+      <strong>Name:</strong>
+      <%= @mailbox.name %>
+    </p>
 
-<p>
-  <strong>Allowed fields:</strong>
-  <%= @mailbox.allowed_fields %>
-</p>
+    <p>
+      <strong>Allowed fields:</strong>
+      <%= @mailbox.allowed_fields %>
+    </p>
 
-<p>
-  <strong>Redirect url:</strong>
-  <%= link_to @mailbox.site_url, url_link(@mailbox.site_url), target: '_blank' %>
-</p>
+    <p>
+      <strong>Redirect URL:</strong>
+      <%= link_to @mailbox.site_url, url_link(@mailbox.site_url), target: '_blank' %>
+    </p>
 
-<p>
-  <strong>Reply to submitter:</strong>
-  <%= @mailbox.should_reply ? "yes" : "no" %>
-</p>
+    <p>
+      <strong>Reply to submitter:</strong>
+      <%= @mailbox.should_reply ? "yes" : "no" %>
+    </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @mailbox.note %>
-</p>
-
-<br/>
+    <p>
+      <strong>Note:</strong>
+      <%= @mailbox.note %>
+    </p>
+  </div>
+</div>
 
 <div class="field is-grouped">
   <p class="control">
@@ -41,7 +43,12 @@
 <hr>
 
 <p>
-  Here's your form code. Update it where necessery.
+  <article class="message is-info">
+    <div class="message-body">
+      Here's your form code. Update it where necessery but keep the first 2 lines and the hidden div to prevent spam.
+    </div>
+  </article>
+
   <figure class="highlight">
     <%= form_code(@mailbox.token, @mailbox.allowed_fields) %>
   </figure>
