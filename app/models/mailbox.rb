@@ -12,7 +12,11 @@ class Mailbox < ApplicationRecord
 
   private
     def generate_mailbox_token
+<<<<<<< HEAD
       self.token = SecureRandom.hex[0..15] # Digest::SHA1.hexdigest([Time.now, rand].join)[0..15]
+=======
+      self.token = Digest::SHA1.hexdigest([Time.now, rand].join)[0..15]
+>>>>>>> 8248591a07e106571d6b2bc53ebaf1c6510b2e17
       generate_mailbox_token if Mailbox.exists?(token: self.token)
     end
 
