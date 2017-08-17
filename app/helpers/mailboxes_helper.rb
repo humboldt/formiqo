@@ -1,38 +1,34 @@
 module MailboxesHelper
 
-  def form_code(token)
+  def form_code(token, fields)
     action_url = "#{root_url}m/#{token}"
-    form = '
-        <form action="%{url}" accept-charset="UTF-8" method="post">
-          <input name="utf8" type="hidden" value="✓">
+    inputs = %Q()
+    fields = fields.gsub(" ", "").split(",")
+    fields.each do |f|
+      field = %Q(
+        <div class="field">
+          <label for="#{f}">#{f}</label>
+          <input type="text" name="#{f}">
+        </div>
+      )
+      inputs += field
+    end
 
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="text" name="email">
-          </div>
+    form = %Q(
+      <form action="#{action_url}" accept-charset="UTF-8" method="post">
+        <input name="utf8" type="hidden" value="✓">'
+        #{inputs}
+        <div style="width: 1px; height: 1px; overflow: hidden; display: none;">
+          Please leave following field blank:
+          <textarea name="comment"></textarea>
+        </div>
 
-          <div class="field">
-            <label for="subject">Subject</label>
-            <input type="text" name="subject">
-          </div>
+        <div class="actions">
+          <input type="submit" value="Send">
+        </div>
+      </form>
+    )
 
-          <div class="field">
-            <label for="body">Body</label>
-            <textarea name="body"></textarea>
-          </div>
-
-          <div style="width: 1px; height: 1px; overflow: hidden; display: none;">
-            Please leave following field blank:
-            <textarea name="comment"></textarea>
-          </div>
-
-          <div class="actions">
-            <input type="submit" value="Send">
-          </div>
-        </form>
-      '
-
-    form = form % {url: action_url}
     form.strip.gsub(" ", "").gsub("\n", "")
     markdown(form.to_s)
   end
@@ -41,7 +37,7 @@ module MailboxesHelper
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
     extensions = {
 
-      })
-      raw(markdown.render(text))
+    })
+    raw(markdown.render(text))
   end
 end
