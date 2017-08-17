@@ -3,13 +3,13 @@ class Message < ApplicationRecord
   attr_accessor :comment
   after_create :notify
 
-  belongs_to :mailbox
+  belongs_to :mailbox, counter_cache: true
   validates_length_of :comment, :in => 0..1
 
   default_scope { order(created_at: :desc) }
-  scope :today, -> { where(created_at: ((Time.zone.now - 24.hours)..Time.zone.now)) }
-  scope :week, -> { where(created_at: ((Time.zone.now - 7.days)..Time.zone.now)) }
-  scope :month, -> { where(created_at: ((Time.zone.now - 1.month)..Time.zone.now)) }
+  scope :today, -> { where(created_at: (Time.zone.now.beginning_of_day..Time.zone.now)) }
+  scope :week, -> { where(created_at: (Time.zone.now.beginning_of_week..Time.zone.now)) }
+  scope :month, -> { where(created_at: (Time.zone.now.beginning_of_month..Time.zone.now)) }
 
 
   def self.search(q)
@@ -42,7 +42,7 @@ class Message < ApplicationRecord
       [key, value]
     end
 
-    def notif
+    def notify
       MailboxMailer.reply(self).deliver_later if mailbox.should_reply
     end
 

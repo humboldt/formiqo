@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :mailboxes, dependent: :destroy
+  has_many :messages, through: :mailboxes
   has_one :subscription
   has_one :plan, through: :subscriptions
 

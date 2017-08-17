@@ -6,14 +6,11 @@ class MailboxesController < ApplicationController
 
   def index
     @mailboxes = current_user.mailboxes
-    @today, @month, @week, @all_time = 0, 0, 0, 0
-    @mailboxes.each do |mailbox|
-      @today += mailbox.messages.today.length
-      @month += mailbox.messages.week.length
-      @week += mailbox.messages.month.length
-      @all_time += mailbox.messages.length
-    end
 
+    @today = current_user.messages.today.size
+    @week = current_user.messages.week.size
+    @month = current_user.messages.month.size
+    @all_time = current_user.messages.size
   end
 
   def show
