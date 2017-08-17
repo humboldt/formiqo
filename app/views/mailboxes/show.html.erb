@@ -42,14 +42,19 @@
 
 <hr>
 
-<p>
-  <article class="message is-info">
-    <div class="message-body">
-      Here's your form code. Update it where necessery but keep the first 2 lines and the hidden div to prevent spam.
-    </div>
-  </article>
 
-  <figure class="highlight">
-    <%= form_code(@mailbox.token, @mailbox.allowed_fields) %>
-  </figure>
-</p>
+<div class="columns">
+  <div class="column">
+    <p>
+      <article class="message is-info">
+        <div class="message-body">
+          Here's your form code. Update it where necessery but keep the first 2 lines and the hidden div to prevent spam.
+        </div>
+      </article>
+
+      <figure class="highlight">
+        <%= form_code(@mailbox.token, @mailbox.allowed_fields) %>
+      </figure>
+    </p>
+  </div>
+</div>
