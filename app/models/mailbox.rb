@@ -12,7 +12,8 @@ class Mailbox < ApplicationRecord
 
   private
     def generate_mailbox_token
-      self.token = Digest::SHA1.hexdigest([Time.now, rand].join)
+      self.token = Digest::SHA1.hexdigest([Time.now, rand].join)[0..15]
+      generate_mailbox_token if Mailbox.exists?(token: self.token)
     end
 
     def allowed_fields_amount

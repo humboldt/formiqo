@@ -4,8 +4,8 @@
 </p>
 
 <p>
-  <strong>Note:</strong>
-  <%= @mailbox.note %>
+  <strong>Allowed fields:</strong>
+  <%= @mailbox.allowed_fields %>
 </p>
 
 <p>
@@ -18,22 +18,31 @@
   <%= @mailbox.should_reply ? "yes" : "no" %>
 </p>
 
-
 <p>
-  <strong>Form body:</strong>
-  <figure class="highlight">
-    <%= form_code(@mailbox.token) %>
-  </figure>
+  <strong>Note:</strong>
+  <%= @mailbox.note %>
 </p>
 
-<hr/>
-
+<br/>
 
 <div class="field is-grouped">
   <p class="control">
-    <%= link_to "Delete this mailbox", @mailbox, method: :delete, class: "button is-outlined", data: { confirm: "Are you sure?" } %>
+    <%= link_to "Delete this mailbox", @mailbox, method: :delete,
+      class: "button is-small is-outlined",
+      data: { confirm: "The mailbox and all its messages will be deleted. Are you sure?" } %>
   </p>
   <p class="control">
-    <%= link_to "Clear all messages", clear_messages_mailbox_path(@mailbox), method: :post, class: "button is-outlined", data: { confirm: "Are you sure?" } %>
+    <%= link_to "Clear all messages", clear_messages_mailbox_path(@mailbox),
+      method: :post, class: "button is-small is-outlined",
+      data: { confirm: "All messages of this mailbox will be deleted. Are you sure?" } %>
   </p>
 </div>
+
+<hr>
+
+<p>
+  Here's your form code. Update it where necessery.
+  <figure class="highlight">
+    <%= form_code(@mailbox.token, @mailbox.allowed_fields) %>
+  </figure>
+</p>
