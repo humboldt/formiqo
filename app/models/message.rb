@@ -43,7 +43,7 @@ class Message < ApplicationRecord
     end
 
     def notify
-      MailboxMailer.reply(self).deliver_later if mailbox.should_reply
+      MailerJob.perform_async(self) if mailbox.should_reply
     end
 
 end

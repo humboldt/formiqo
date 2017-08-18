@@ -4,6 +4,8 @@ class MailboxMailer < ApplicationMailer
 
   def reply(message)
     @message = message
+    @email = @message.message_fields['email']
+    return if @email.empty?
     mail(to: @message.message_fields['email'], subject: 'You message was delivered')
   end
 
