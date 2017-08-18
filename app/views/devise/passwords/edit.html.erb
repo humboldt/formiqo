@@ -1,25 +1,41 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
+<h1 class="title is-4 has-text-centered">Change your password</h1>
+<div class="box">
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    <%= f.label :password, "New password", class: "label" %>
+    <p class="control has-icons-left">
+      <%= f.input_field :password, autofocus: true, autocomplete: "off", class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+      <p class="help is-danger">
+        <%= f.object.errors[:password].join(", ") %>
+      </p>
+    </p>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation, "Confirm new password", class: "label" %>
+    <p class="control has-icons-left">
+      <%= f.input_field :password_confirmation, autocomplete: "off", class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+      <p class="help is-danger">
+        <%= f.object.errors[:password_confirmation].join(", ") %>
+      </p>
+    </p>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
+  <div class="field">
+    <p class="control">
+      <%= f.button :submit, "Change my password", class: "button is-primary" %>
+    </p>
   </div>
 <% end %>
+</div>
 
 <%= render "devise/shared/links" %>

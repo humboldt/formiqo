@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function() {
       $("#mailbox_reply_body").prop('disabled', true)
     }
   })
-  
+
   if ( should_reply.is(':checked') ) {
     $("#mailbox_reply_body").prop('disabled', false)
   }
