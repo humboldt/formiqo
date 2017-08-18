@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :e_404
 
-
-
   def e_404
     render(file: 'public/404', layout: false, status: :not_found)
   end

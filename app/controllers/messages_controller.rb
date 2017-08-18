@@ -4,8 +4,8 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
-  load_and_authorize_resource :mailbox
-  load_and_authorize_resource :message, through: :mailbox
+  load_and_authorize_resource
+  # load_and_authorize_resource :message, through: :mailbox
   skip_authorize_resource only: :create
   layout 'mailbox_layout', only: [:index]
 
@@ -32,9 +32,6 @@ class MessagesController < ApplicationController
 
 
       if @mailbox.messages.create(attrs)
-        # if @mailbox.should_reply
-        #   MailboxMailer.reply(@message).deliver_later
-        # end
         format.html { redirect_to url_link(@mailbox.site_url) }
         format.json { render json: @mailbox }
       else

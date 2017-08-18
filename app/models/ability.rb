@@ -5,7 +5,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     if user
-      if user.subscription.expired?
+      if user.subscription.try(:expired?)
         can :read, Subscription
         can :read, Plan
         can :index, Mailbox
@@ -23,18 +23,4 @@ class Ability
       can :create, Message
     end
   end
-  #
-  # def subscription_expired?
-  #   user.subscription.expired?
-  # end
-
 end
-
-
-def authorized
-
-end
-
-# user logged in
-# user logged in and has subscription
-# user not logged in
