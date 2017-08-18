@@ -16,7 +16,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'redcarpet'
-gem 'bulma-rails', '~> 0.4.3'
+gem 'bulma-rails', '~> 0.5.1'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 
