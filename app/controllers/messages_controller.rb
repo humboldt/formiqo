@@ -4,9 +4,10 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :set_mailbox
-  load_and_authorize_resource
-  # load_and_authorize_resource :message, through: :mailbox
-  skip_authorize_resource only: :create
+  load_and_authorize_resource :mailbox
+  load_and_authorize_resource through: :mailbox
+  # skip_authorize_resource only: :create
+  skip_authorize_resource :mailbox, only: :create
   layout 'mailbox_layout', only: [:index]
 
   def index
@@ -15,7 +16,7 @@ class MessagesController < ApplicationController
     @messages = @messages.week if params[:range] == 'week'
     @messages = @messages.search(params[:q]) if params[:q]
 
-    @messages = Kaminari.paginate_array(@messages).page(params[:page]).per(30)
+    @messages = Kaminari.paginate_array(@messages).page(params[:page])#.per(30)
     respond_to do |format|
       format.html
       format.csv { send_data @messages.to_csv }

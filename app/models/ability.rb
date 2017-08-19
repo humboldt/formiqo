@@ -10,7 +10,8 @@ class Ability
         can :read, Plan
         can :index, Mailbox
       else
-        can [:read, :create, :update, :destroy], Mailbox, user_id: user.id
+        can [:read, :create, :update, :destroy, :clear_messages], Mailbox, user_id: user.id
+
         can [:index, :destroy], Message do |m|
           m.mailbox.user_id == user.id
         end
