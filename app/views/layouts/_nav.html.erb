@@ -19,7 +19,8 @@
           More
         </div>
         <div id="moreDropdown" class="navbar-dropdown ">
-          <a class="navbar-item " href="http://bulma.io/extensions/">
+
+          <%= link_to pages_help_path, class: "navbar-item", id: "link-to-pay" do %>
             <div class="level is-mobile">
               <div class="level-left">
                 <div class="level-item">
@@ -31,7 +32,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          <% end %>
           <%= link_to subscriptions_path, class: "navbar-item", id: "link-to-pay" do %>
           <div class="level is-mobile">
             <div class="level-left">

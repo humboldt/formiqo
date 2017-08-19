@@ -1,6 +1,58 @@
 <section class="section">
   <div class="container is-fluid">
     <div class="content">
+      <h1 class="title">Help</h1>
+
+      <h1 class="title is-2">Creating a mailbox</h1>
+
+      This should be pretty straighforward.
+      <ul>
+        <li>Hit the the plus button on the left</li>
+        <li>Add a list of fields that you would like to accept in your form</li>
+        <li>Set redirect url</li>
+        <li>Optionally set a reply message which will be send to the user who submitted your form</li>
+      </ul>
+
+      <figure>
+        <img src="../images/mailbox_view.png">
+
+        <figcaption>
+          Add new mailbox view
+        </figcaption>
+      </figure>
+
+      <h1 class="title is-2">Form code</h1>
+
+        After specifying the allowed fields of your form and saving you should get a form code.<br/>
+        Here's an example of how it might look like if you specified <code>email, subject, body</code>.<br/><br/>
+
+        You can update it and add some styles but <strong>keep the parts surrounded with a red rectangular</strong>.<br/>
+        Also keep the name properties of the inputs. <code>name="email"</code>, <code>name="subject"</code>, <code>name="body"</code> etc.<br/>
+        But feel free to change other attributes like <code>type</code>
+
+        <figure>
+          <img src="../images/form.png"/>
+
+          <figcaption>
+            Generated form code
+          </figcaption>
+        </figure>
+
+
+      <h1 class="title is-2">Using search</h1>
+
+        The search is using <code>key: value</code> pattern.<br/>
+        For example, if your form has the following fields: <code>email, subject, body</code> and you want to find something you can type the following and hit search.<br/>
+        <code>body: contact me</code> or search by email <code>email: user@example.com</code>. Same works for other fields that you might have.
+
+
+      <figure>
+        <img src="../images/search.png"/>
+
+        <figcaption>
+          Searching using body key
+        </figcaption>
+      </figure>
 
     </div>
   </div>
