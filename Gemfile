@@ -24,6 +24,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -32,6 +36,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'ffaker'
+  gem 'guard-rspec', require: false
 end
 
 gem 'gravatar_image_tag'
