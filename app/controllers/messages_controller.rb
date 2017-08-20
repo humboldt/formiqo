@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
     @messages = Kaminari.paginate_array(@messages).page(params[:page])#.per(30)
     respond_to do |format|
       format.html
+      format.json { render json: @mailbox }
       format.csv { send_data @messages.to_csv }
     end
 
