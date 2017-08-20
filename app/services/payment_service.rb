@@ -1,13 +1,11 @@
-
-
 PayPal::SDK::REST.set_config(
-  :mode => "sandbox", # "sandbox" or "live"
-  :client_id => "AXIpompLJuiKlqsFdRZY_zJs8YnlG0VpTM2YZ4nGzIVGwDP58U4LJwLrC55CDJd4Pu6k1u-BvnPFzhH7",
-  :client_secret => "EHfeekIlze5OXoJ03X4ZeFbYlkRDC-VuefWVsN_I5GaHTGUtm9Ywpt8GVFar3pBAAFqonGk8qPGojxJq")
+  :mode => ENV['pp_mode'], # "sandbox" or "live"
+  :client_id => ENV['pp_client_id'],
+  :client_secret => ENV['pp_client_secret'])
 
 class PaymentService
-  def initialize(amount)
-    @payment = PayPal::SDK::REST::Payment.new(data(amount))
+  def initialize(host, amount)
+    @payment = PayPal::SDK::REST::Payment.new(data(host, amount))
   end
 
   def accept
@@ -18,14 +16,14 @@ class PaymentService
     @payment
   end
 
-  def data(amount)
+  def data(host, amount)
     {
       intent: 'sale',
       payer: {
         payment_method: 'paypal' },
       redirect_urls: {
-        return_url: "http://localhost:3000/execute",
-        cancel_url: "http://localhost:3000/" },
+        return_url: host + "/execute",
+        cancel_url: host + "/" },
       transactions: [ {
         amount: {
           total: amount,

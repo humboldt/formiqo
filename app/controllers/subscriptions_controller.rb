@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
         @amount = Plan.find(@new_plan_id).cost * @duration.to_f
       end
 
-      @payment = PaymentService.new(@amount)
+      @payment = PaymentService.new(request.base_url, @amount)
       if @payment.accept
         stash_details(@new_plan_id, @duration, @amount)
         redirect_to extract_link(@payment.response)

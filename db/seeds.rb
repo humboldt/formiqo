@@ -28,5 +28,5 @@ end
 end
 
 
-Plan.create(name: "Plan 1", description: "15 mailboxes", cost: 9.99, n_mailboxes: 15)
+Plan.create(name: "Plan 1", description: "10 mailboxes", cost: 9.99, n_mailboxes: 10)
 # Plan.create(name: "Plan 2", description: "10 mailboxes", cost: 9.99, n_mailboxes: 10)
