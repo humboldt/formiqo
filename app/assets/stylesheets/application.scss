@@ -166,3 +166,24 @@ ul.message-fields {
 .hero.is-90vh  {
   min-height: 90vh !important;
 }
+
+// Disable select when readonly: true
+.input[readonly],
+.textarea[readonly] {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  box-shadow: none;
+  color: #7a7a7a;
+  pointer-events: none;
+}
+
+.input[readonly]::-moz-placeholder,
+.textarea[readonly]::-moz-placeholder,
+.input[readonly]::-webkit-input-placeholder,
+.textarea[readonly]::-webkit-input-placeholder,
+.input[readonly]:-moz-placeholder,
+.textarea[readonly]:-moz-placeholder,
+.input[readonly]:-ms-input-placeholder,
+.textarea[readonly]:-ms-input-placeholder {
+  color: rgba(122, 122, 122, 0.3);
+}
