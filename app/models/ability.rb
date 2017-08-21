@@ -5,6 +5,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     if user
+      if user.admin
+        can :manage, :all
+      end
       if user.subscription.try(:expired?)
         can :read, Subscription
         can :read, Plan

@@ -1,0 +1,47 @@
+<%= simple_form_for [:admin, user] do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="notification is-danger">
+      <button class="delete"></button>
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this mailbox from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email, class: "label" %>
+    <div class="control">
+      <%= form.input_field :email, id: :user_name, class: "input", placeholder: "" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, class: "label" %>
+    <div class="control">
+      <%= form.input_field :password, id: :user_password, class: "input", placeholder: "" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <label class="checkbox">
+      <%= form.input_field :admin, as: :boolean, checked_value: true, unchecked_value: false %>
+      Is admin?
+      </label>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <p class="control">
+      <%= form.submit "Save", class: "button is-primary" %>
+    </p>
+    <p class="control">
+      <%= link_to 'Cancel', admin_users_url, class: "button" %>
+    </p>
+  </div>
+
+<% end %>

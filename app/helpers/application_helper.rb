@@ -25,4 +25,11 @@ module ApplicationHelper
     end
   end
 
+  def subscription_status(user)
+    d = (user.subscription.end_date.to_i - Time.zone.now.to_i) / 84600
+    expires_in = distance_of_time_in_words(Time.zone.now, user.subscription.end_date)
+    tag = content_tag :span, expires_in, class: "tag is-success"
+    d < 0 ? "Expired" : tag
+  end
+
 end

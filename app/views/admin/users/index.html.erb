@@ -1,0 +1,49 @@
+<h1 class="title">Users</h1>
+<div class="columns">
+  <div class="column">
+    <%= link_to new_admin_user_path, { class: "button is-primary" } do %>
+      <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add user
+    <% end %>
+  </div>
+</div>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>email</th>
+      <th>created</th>
+      <th>subscription</th>
+      <th>N Mailboxes</th>
+      <th>admin</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at %></td>
+      <td><%= subscription_status(user) %></td>
+      <td><%= user.mailboxes.size %></td>
+      <td>
+        <!-- too lazy fo a helper -->
+        <% if user.admin %>
+          <span class="tag is-dark"><%= user.admin ? 'Y' : 'N' %></span>
+        <% else %>
+          <%= user.admin ? 'Y' : 'N'  %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "Show", admin_user_path(user), class: "button is-small is-primary" %>
+        <%= link_to "Edit", edit_admin_user_path(user), class: "button is-small is-primary" %>
+        <%= link_to "Delete", admin_user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "button is-small is-danger"%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>

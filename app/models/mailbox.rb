@@ -1,7 +1,7 @@
 class Mailbox < ApplicationRecord
   before_validation :generate_mailbox_token, on: :create
   has_many :messages, dependent: :destroy
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   validates :name, :site_url, presence: true, uniqueness: { scope: :user_id }
   validate :allowed_fields_amount
   validates :reply_body, presence: true, :if => :should_reply?

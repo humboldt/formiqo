@@ -76,5 +76,15 @@
         </div>
       </div>
     </div>
+
+    <% if user_signed_in? %>
+    <% if can? :manage, :all %>
+      <div class="navbar-end">
+        <%= link_to "Admin", admin_users_url, class: "navbar-item" %>
+      </div>
+    <% end %>
+    <% end %>
+
+
   </div>
 </nav>

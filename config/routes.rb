@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :users    
+  end
+
   # post '/checkout', to: 'payment#checkout'
   get '/execute', to: 'payment#execute'
   get 'pages/index'
