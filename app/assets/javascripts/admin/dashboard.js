@@ -4,11 +4,11 @@ Vue.component('chart', {
     <canvas style="width: 512px; height: 256px"></canvas>
   `,
   watch: {
-      loaded(isLoaded){
-          if(isLoaded){
-              this.drawChart();
-          }
+    loaded: function(isLoaded){
+      if(isLoaded){
+        this.drawChart();
       }
+    }
   },
   methods: {
     drawChart: function() {
