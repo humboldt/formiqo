@@ -21,9 +21,12 @@ end
 30.times.each do |message|
   Message.create(
     mailbox_id: rand(1..3),
-    email: FFaker::Internet.disposable_email,
-    subject: FFaker::CheesyLingo.title,
-    body: FFaker::CheesyLingo.sentence
+    message_fields: {
+      email: FFaker::Internet.disposable_email,
+      subject: FFaker::CheesyLingo.title,
+      body: FFaker::CheesyLingo.sentence,
+    },
+    comment: ""
   )
 end
 

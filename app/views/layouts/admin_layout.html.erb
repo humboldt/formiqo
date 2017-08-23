@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -21,11 +21,19 @@
       <div class="container is-fluid">
         <div class="columns">
           <div class="column">
+            <div class="tabs is-small">
+              <ul>
+                <li><%= link_to "Dashboard", admin_dashboard_path %></li>
+                <li><%= link_to "Users", admin_users_path %></li>
+              </ul>
+            </div>
             <%= yield %>
           </div>
         </div>
       </div>
     </div>
 
+
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>

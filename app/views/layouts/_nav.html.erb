@@ -80,7 +80,9 @@
     <% if user_signed_in? %>
     <% if can? :manage, :all %>
       <div class="navbar-end">
-        <%= link_to "Admin", admin_users_url, class: "navbar-item" %>
+        <%= link_to admin_dashboard_url, class: "navbar-item" do%>
+          <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <% end %>
       </div>
     <% end %>
     <% end %>

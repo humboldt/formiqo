@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'dashboard/index'
+  end
+
   root to: 'pages#index'
 
   devise_for :users,
@@ -24,7 +28,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users    
+    resources :users
+    get 'dashboard', to: "dashboard#index", as: :dashboard
+    get 'fetch_data', to: "dashboard#fetch_data"
   end
 
   # post '/checkout', to: 'payment#checkout'
