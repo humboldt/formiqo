@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'dashboard/index'
-  end
 
+
+
+
+  post 'user_token' => 'user_token#create'
   root to: 'pages#index'
 
   devise_for :users,
@@ -31,6 +32,10 @@ Rails.application.routes.draw do
     resources :users
     get 'dashboard', to: "dashboard#index", as: :dashboard
     get 'fetch_data', to: "dashboard#fetch_data"
+  end
+
+  namespace :api, defaults: { format: :json } do
+    resources :mailboxes, only: [:index, :show]
   end
 
   # post '/checkout', to: 'payment#checkout'

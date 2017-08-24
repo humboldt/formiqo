@@ -7,6 +7,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  alias_method :authenticate, :valid_password?
+
   has_many :mailboxes, dependent: :destroy
   has_many :messages, through: :mailboxes
   has_one :subscription, dependent: :destroy
@@ -33,5 +35,9 @@ class User < ApplicationRecord
           name: "Demo mailbox",
           site_url: "formiqo.com",
           note: "Contact form for my blog", allowed_fields: "email, subject, body")
+    end
+
+    def self.from_token_payload payload
+      self.find payload["sub"]
     end
 end

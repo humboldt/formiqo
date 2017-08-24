@@ -29,4 +29,5 @@ class Mailbox < ApplicationRecord
       should_reply == true
     end
 
+
 end
