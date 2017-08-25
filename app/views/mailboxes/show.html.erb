@@ -57,34 +57,3 @@
     </p>
   </div>
 </div>
-
-<hr>
-
-<div class="columns">
-  <div class="column">
-    <div class="content is-small">
-      <h1 class="title is-5">api</h1>
-      <p>With the existing api you can fetch your mailboxes and messages.</p>
-
-      <p>
-        Make a post request to <code>formiqo.com/auth</code> with the following body
-        <code>{"auth": {"email": "your_email", "password": "you_password"}}</code>
-      </p>
-      <p>If the credentials are correct, you'll get a response with your jwt token <code>"jwt": "token"</code></p>
-
-      <p>Now you can fetch a list of your mailboxes or a specific mailbox with:</p>
-
-      <ul>
-        <li>GET <code>formiqo.com/api/mailboxes</code> - returns a list of all mailboxes</li>
-        <li>GET <code>formiqo.com/api/mailboxes/c7536b6acd26bd47</code> - returns a mailbox with nested messages</li>
-      </ul>
-
-      <p>Don't forget to set the following headers:
-        <code>Content-Type: application/json </code>,
-        <code>Authorization: your_jwt_token </code>
-      </p>
-
-      </p>
-    </div>
-  </div>
-</div>

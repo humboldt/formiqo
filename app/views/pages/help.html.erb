@@ -54,6 +54,27 @@
         </figcaption>
       </figure>
 
+      <h1 class="title is-2">Some Api</h1>
+
+      With the existing api you can fetch your mailboxes and messages.<br/>
+
+      Make a post request to <code>formiqo.com/auth</code> with the following body
+      <code>{"auth": {"email": "your_email", "password": "you_password"}}</code><br/>
+
+      If the credentials are correct, you'll get a response with your jwt token <code>"jwt": "token"</code><br/>
+
+      Now you can fetch a list of your mailboxes or a specific mailbox with:<br/>
+
+      <ul>
+        <li>GET <code>formiqo.com/api/mailboxes</code> - returns a list of all mailboxes</li>
+        <li>GET <code>formiqo.com/api/mailboxes/c7536b6acd26bd47</code> - returns a mailbox with nested messages</li>
+      </ul>
+
+      Don't forget to set the following headers:
+        <code>Content-Type: application/json </code>,
+        <code>Authorization: your_jwt_token </code>
+
+
     </div>
   </div>
 </section>
