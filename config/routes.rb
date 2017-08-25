@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-
-  post 'auth' => 'user_token#create'
   root to: 'pages#index'
 
   devise_for :users,
@@ -28,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'auth' => 'user_token#create'
   namespace :admin do
     resources :users
     get 'dashboard', to: "dashboard#index", as: :dashboard
