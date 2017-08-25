@@ -179,6 +179,10 @@ GEM
       rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-tracker (1.3.1)
+      activesupport (>= 3.0)
+      rack (>= 1.4)
+      tilt (>= 1.4)
     rails (5.1.2)
       actioncable (= 5.1.2)
       actionmailer (= 5.1.2)
@@ -331,6 +335,7 @@ DEPENDENCIES
   rack-attack
   rack-cors
   rack-mini-profiler
+  rack-tracker
   rails (~> 5.1.2)
   rails-controller-testing
   redcarpet
