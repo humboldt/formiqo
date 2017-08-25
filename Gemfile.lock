@@ -172,6 +172,8 @@ GEM
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
+    rack-attack (5.0.1)
+      rack
     rack-cors (0.4.1)
     rack-mini-profiler (0.10.5)
       rack (>= 1.2.0)
@@ -326,6 +328,7 @@ DEPENDENCIES
   paypal-sdk-rest
   pg (~> 0.18)
   puma (~> 3.7)
+  rack-attack
   rack-cors
   rack-mini-profiler
   rails (~> 5.1.2)
