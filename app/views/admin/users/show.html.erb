@@ -1,5 +1,25 @@
+<div class="columns">
+  <div class="column">
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<%= @user.email %>
-<%= @user.admin ? 'Admin' : '' %>
+    <p>
+      <strong>Is admin:</strong>
+      <%= @user.admin ? 'Y' : 'N' %>
+    </p>
 
-<%= @user.subscription.end_date %>
+    <p>
+      <strong>Subscription ends:</strong>
+      <%= subscription_status(@user) %> /
+      <%= @user.subscription.end_date %>
+    </p>
+
+    <p>
+      <strong>Mailboxes:</strong>
+      <%= @user.mailboxes_count %> out of <%= @user.plan.n_mailboxes %>
+    </p>
+
+  </div>
+</div>

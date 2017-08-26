@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :mailboxes, dependent: :destroy
   has_many :messages, through: :mailboxes
   has_one :subscription, dependent: :destroy
-  has_one :plan, through: :subscriptions
+  has_one :plan, through: :subscription
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates_format_of :email, :with => EMAIL_REGEX
