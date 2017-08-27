@@ -4,7 +4,14 @@ class Admin::UsersController < Admin::AdminBase
   load_and_authorize_resource
 
   def index
-    @users = User.all.page(params[:page]).per(50)
+    # add search
+    if params[:q] && !params[:q].empty?
+      @users = User.where('email LIKE ?', params[:q]).page(params[:page]).per(50)
+    else
+      @users = User.all.page(params[:page]).per(50)
+    end
+
+
   end
 
   def show

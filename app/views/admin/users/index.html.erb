@@ -7,6 +7,25 @@
   </div>
 </div>
 
+<div class="columns">
+  <div class="column">
+    <div class="level-left">
+      <div class="level-item">
+        <%= form_tag(admin_users_path, method: :get) do %>
+        <div class="field has-addons">
+            <p class="control is-expanded">
+              <%= text_field_tag :q, params[:q], placeholder: "user email", class: "input" %>
+            </p>
+            <p class="control">
+            <%= submit_tag 'Search', name: nil, class: "button" %>
+            </p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <table class="table is-fullwidth">
   <thead>
     <tr>
