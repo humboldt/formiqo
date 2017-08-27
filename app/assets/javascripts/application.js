@@ -25,10 +25,12 @@ $(document).on('turbolinks:load', function() {
       $('.notification').fadeOut();
     }, 5000)
   }
+
   $('.notification > button.delete').on('click', function(e) {
     e.preventDefault();
     $(this).closest('.notification').fadeOut();
   })
+
   $('.navbar-burger.burger').on('click', function(e) {
     e.preventDefault();
     $('.navbar-menu').slideToggle('fast');
@@ -49,6 +51,12 @@ $(document).on('turbolinks:load', function() {
     $(".message-fields").toggle("fast")
   })
 
+  $(".message-item").on('click', function(e) {
+    e.preventDefault();
+    console.log("e");
+    $(this).find("ul.message-fields").toggle("fast")
+  })
+
   var should_reply = $("#mailbox_should_reply")
   should_reply.on('click', function() {
     if ( $(this).is(':checked') ) {
@@ -61,7 +69,5 @@ $(document).on('turbolinks:load', function() {
   if ( should_reply.is(':checked') ) {
     $("#mailbox_reply_body").prop('disabled', false)
   }
-
-
 
 })
