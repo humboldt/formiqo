@@ -6,6 +6,10 @@ class Subscription < ApplicationRecord
   attr_accessor :duration
   validates_presence_of :plan_id
 
+  scope :this_month, -> { where('updated_at BETWEEN ? AND ?', Time.zone.now.beginning_of_month, Time.zone.now) }
+  scope :updated, -> { where('updated_at > created_at') }
+  scope :active, -> { where('end_date > ?', Time.zone.now) }
+
   def prolong_for(n)
     if end_date < Time.zone.now
       update!(end_date: Time.zone.now + n.months)
@@ -21,6 +25,13 @@ class Subscription < ApplicationRecord
 
   def expired?
     end_date < Time.zone.now
+  end
+
+  # if user subscribed for more than 1 month
+  # and if subscription is not expired
+  # it will be summed to this month earnings
+  def self.month_earnings
+    this_month.updated.active
   end
 
   private
