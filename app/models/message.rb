@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  paginates_per 30
+  paginates_per 50
   store_accessor :message_fields
   attr_accessor :comment
   after_create :notify
