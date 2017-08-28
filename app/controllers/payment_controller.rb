@@ -10,8 +10,10 @@ class PaymentController < ApplicationController
 
       if payment.execute(payer_id: params[:PayerID])
         current_user.subscription.prolong_for(cookies.signed[:duration])
+        PaymentMailer.prolonged(current_user, cookies.signed[:duration]).deliver_later
         clear_stash
         redirect_to root_path, notice: "Subscribed successfully"
+
       else
         redirect_to root_path, error: "Something went wrong"
       end
