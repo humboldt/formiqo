@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: formiqo_production
-  username: formiqo
-  password: <%= ENV['FORMIQO_DATABASE_PASSWORD'] %>
+  database: <%= ENV['db_name'] %>
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
