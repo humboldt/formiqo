@@ -1,7 +1,7 @@
-PayPal::SDK::REST.set_config(
-  :mode => ENV['pp_mode'], # "sandbox" or "live"
-  :client_id => ENV['pp_client_id'],
-  :client_secret => ENV['pp_client_secret'])
+# PayPal::SDK::REST.set_config(
+#   :mode => "ENV['pp_mode']", # "sandbox" or "live"
+#   :client_id => ENV['pp_client_id'],
+#   :client_secret => ENV['pp_client_secret'])
 
 class PaymentService
   def initialize(host, amount)
