@@ -1,5 +1,5 @@
 PayPal::SDK::REST.set_config(
-  :mode => "ENV['pp_mode']", # "sandbox" or "live"
+  :mode => ENV['pp_mode'], # "sandbox" or "live"
   :client_id => ENV['pp_client_id'],
   :client_secret => ENV['pp_client_secret'])
 
