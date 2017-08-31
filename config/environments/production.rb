@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: ENV["host"], port: ENV["port"] }
+  config.action_mailer.default_url_options = { host: ENV["host"] }
 
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
