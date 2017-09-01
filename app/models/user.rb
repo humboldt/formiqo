@@ -21,9 +21,9 @@ class User < ApplicationRecord
     true
   end
 
-  def reached_mailbox_limit?
-    mailboxes.length > subscription.plan.n_mailboxes
-  end
+  # def reached_mailbox_limit?
+  #   mailboxes.length > subscription.plan.n_mailboxes
+  # end
 
   private
     def add_subscription

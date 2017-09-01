@@ -32,8 +32,7 @@ class Mailbox < ApplicationRecord
     end
 
     def validate_mailbox_limit
-      user = User.find(user_id)
-      if user.mailboxes.length >= user.subscription.plan.n_mailboxes
+      if user.mailboxes.length >= user.plan.n_mailboxes
         errors.add(:number_of_mailboxes, "limit reached")
       end
     end
