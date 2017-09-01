@@ -25,7 +25,6 @@ class MailboxesController < ApplicationController
 
   def create
     @mailbox = current_user.mailboxes.build(mailbox_params)
-    unless mailbox_limit_reached
       respond_to do |format|
         if @mailbox.save
           format.html { redirect_to @mailbox, notice: 'Mailbox was successfully created.' }
@@ -35,7 +34,6 @@ class MailboxesController < ApplicationController
           format.json { render json: @mailbox.errors, status: :unprocessable_entity }
         end
       end
-    end
   end
 
   def update
@@ -65,12 +63,6 @@ class MailboxesController < ApplicationController
   end
 
   private
-    def mailbox_limit_reached
-      if current_user.reached_mailbox_limit?
-        redirect_to root_path, notice: "Mailbox limit reached."
-      end
-    end
-
     def set_mailbox
       @mailbox = current_user.mailboxes.find_by(token: params[:id])
     end

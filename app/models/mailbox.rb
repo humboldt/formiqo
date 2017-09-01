@@ -2,9 +2,11 @@ class Mailbox < ApplicationRecord
   before_validation :generate_mailbox_token, on: :create
   has_many :messages, dependent: :destroy
   belongs_to :user, counter_cache: true
-  validates :name, :site_url, presence: true, uniqueness: { scope: :user_id }
-  validate :allowed_fields_amount
-  validates :reply_body, presence: true, :if => :should_reply?
+  validates :name, presence: true, uniqueness: { scope: :user_id }
+  validates :site_url, presence: true
+  validate :validate_allowed_fields_amount
+  validate :validate_mailbox_limit
+  validates :reply_body, presence: true, if: :should_reply?
 
   def to_param
     token
@@ -16,7 +18,7 @@ class Mailbox < ApplicationRecord
       generate_mailbox_token if Mailbox.exists?(token: self.token)
     end
 
-    def allowed_fields_amount
+    def validate_allowed_fields_amount
       fields = allowed_fields.gsub(" ", "").split(",")
       if fields.length > 10
         errors.add(:allowed_fields, "max 10 fields")
@@ -29,5 +31,11 @@ class Mailbox < ApplicationRecord
       should_reply == true
     end
 
+    def validate_mailbox_limit
+      user = User.find(user_id)
+      if user.mailboxes.length >= user.subscription.plan.n_mailboxes
+        errors.add(:number_of_mailboxes, "limit reached")
+      end
+    end
 
 end
