@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @mailbox }
-      format.csv { send_data @messages.to_csv }
+      format.csv { send_data @mailbox.messages.to_csv }
     end
 
   end
