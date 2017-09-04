@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   private
     def add_subscription
-      Subscription.create(plan_id: 1, user_id: id, end_date: Time.zone.now + 1.day)
+      Subscription.create(plan_id: 1, user_id: id, end_date: Time.zone.now + 3.day)
     end
 
     def add_mailbox
