@@ -16,7 +16,7 @@ module MailboxesHelper
 
     form = %Q(
       <form action="#{action_url}" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="✓">'
+        <input name="utf8" type="hidden" value="✓">
         #{inputs}
         <!-- keep this -->
         <div style="width: 1px; height: 1px; overflow: hidden; display: none;">

@@ -5,7 +5,7 @@ Forms solution for static sites.
 ![](./demo_screenshots/messages_list.png)
 [other screenshots](./demo_screenshots)
 
-## ENV's
+## ENVs
 
 config/application.yml
 
