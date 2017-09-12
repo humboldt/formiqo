@@ -3,7 +3,7 @@ class Mailbox < ApplicationRecord
   has_many :messages, dependent: :destroy
   belongs_to :user, counter_cache: true
   validates :name, presence: true, uniqueness: { scope: :user_id }
-  validates :site_url, presence: true
+  # validates :site_url, presence: true
   validate :validate_allowed_fields_amount
   validate :validate_mailbox_limit
   validates :reply_body, presence: true, if: :should_reply?
@@ -32,7 +32,7 @@ class Mailbox < ApplicationRecord
     end
 
     def validate_mailbox_limit
-      if user.mailboxes.length >= user.plan.n_mailboxes
+      if user.mailboxes.length > user.plan.n_mailboxes
         errors.add(:number_of_mailboxes, "limit reached")
       end
     end
