@@ -34,10 +34,10 @@ class MessagesController < ApplicationController
 
 
       if @mailbox.messages.create(attrs)
-        format.html { redirect_to url_link(@mailbox.site_url) }
+        format.html { redirect_to mailbox_redirect(@mailbox) }
         format.json { render json: @mailbox }
       else
-        format.html { redirect_to url_link(@mailbox.site_url) }
+        format.html { redirect_to mailbox_redirect(@mailbox) }
         format.json { render json: @mailbox }
       end
     end
@@ -58,10 +58,12 @@ class MessagesController < ApplicationController
 
     def set_mailbox
       by = params[:token] || params[:mailbox_id]
-
       @mailbox = Mailbox.find_by(token: by)
-
       redirect_to root_path unless @mailbox
+    end
+
+    def mailbox_redirect(mailbox)
+      mailbox.site_url.blank? ? thank_you_path : url_link(@mailbox.site_url)
     end
 
     def message_params

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'pages/index'
   get 'pages/help'
   get 'pages/terms'
+  get 'thank_you', to: 'pages#thank_you'
 
   get '*path', to: 'application#e_404'
 end

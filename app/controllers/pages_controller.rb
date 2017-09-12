@@ -9,4 +9,8 @@ class PagesController < ApplicationController
 
   def terms
   end
+
+  def thank_you
+    render layout: "redirect"
+  end
 end
