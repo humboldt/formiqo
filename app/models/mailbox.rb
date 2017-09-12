@@ -32,7 +32,7 @@ class Mailbox < ApplicationRecord
     end
 
     def validate_mailbox_limit
-      if user.mailboxes.length >= user.plan.n_mailboxes
+      if user.mailboxes.length > user.plan.n_mailboxes
         errors.add(:number_of_mailboxes, "limit reached")
       end
     end
