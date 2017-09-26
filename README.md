@@ -4,10 +4,11 @@ Forms solution for static sites.
 
 ![](./demo_screenshots/messages_list.png)
 [other screenshots](./demo_screenshots)
+[vimeo demo] (https://vimeo.com/233673541)
 
 ## ENVs
 
-config/application.yml
+add `config/application.yml`
 
 ```
 secret_key:  
@@ -30,7 +31,6 @@ reply_mailer_email:
 
 # host
 host:
-port:
 
 # db
 db_name:
@@ -40,4 +40,13 @@ db_password:
 # admin user seeds.rb
 user_email:
 user_password:
+```
+
+## Run locally
+
+```
+bundle
+rake db:create
+rake db:migrate
+rake db:seed
 ```
