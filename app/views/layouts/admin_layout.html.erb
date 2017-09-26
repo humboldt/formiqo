@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <%= javascript_pack_tag 'dash' %>
   </head>
 
   <body>
@@ -34,6 +34,6 @@
       </div>
     </div>
 
-    <%= javascript_include_tag 'admin' %>
+    <%# javascript_include_tag 'admin' %>
   </body>
 </html>

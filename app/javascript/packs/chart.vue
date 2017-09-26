@@ -1,8 +1,11 @@
-Vue.component('chart', {
+<template lang="html">
+  <canvas style="width: 512px; height: 256px" ></canvas>
+</template>
+
+<script>
+import Chart from 'Chart.bundle.min'
+export default {
   props: ['labels', 'data', 'type', 'loaded'],
-  template: `
-    <canvas style="width: 512px; height: 256px"></canvas>
-  `,
   watch: {
     loaded: function(isLoaded){
       if(isLoaded){
@@ -50,26 +53,8 @@ Vue.component('chart', {
         })
     }
   }
-});
+}
+</script>
 
-new Vue({
-  el: '#app',
-  data: {
-    message: "Today's mailbox activity",
-    labels: [],
-    data: [],
-    loaded: false
-  },
-  methods: {
-    fetchData: function() {
-      this.$http.get('/admin/fetch_data').then(res => {
-        this.labels = res.body[0];
-        this.data = res.body[1];
-        this.loaded = true;
-      })
-    }
-  },
-  created() {
-    this.fetchData()
-  }
-});
+<style lang="css">
+</style>
