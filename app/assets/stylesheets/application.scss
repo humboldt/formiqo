@@ -34,6 +34,12 @@ a {
   box-shadow: none;
   color: #fff;
 }
+
+.button.is-primary:focus:not(:active),
+.button.is-primary.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(137, 114, 170, 0.25);
+}
+
 .select select:focus, .select select.is-focused, .select select:active, .select select.is-active {
   border-color: #8972ab;
 }
@@ -59,6 +65,7 @@ a {
 }
 .input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
     border-color: #8972ab;
+    box-shadow: 0 0 0 0.125em rgba(137, 114, 170, 0.25);
 }
 
 .pagination-link.is-current {
