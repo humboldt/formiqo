@@ -33,7 +33,7 @@ class User < ApplicationRecord
     def add_mailbox
       Mailbox.create(user_id: id,
           name: "Demo mailbox",
-          site_url: "formiqo.com",
+          site_url: "",
           note: "Contact form for my blog", allowed_fields: "email, subject, body")
     end
 
