@@ -11,9 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require Chart.bundle.min
-//= require vue
-//= require vue-resource
 //= require rails-ujs
 //= require turbolinks
 

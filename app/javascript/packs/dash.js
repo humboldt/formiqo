@@ -35,12 +35,16 @@ import App from './app.vue'
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#dashboard',
     data: {
       // message: "Can you say hello?"
     },
     components: { App }
-  })
+  });
+  window.vueApp = app;
+})
+document.addEventListener('turbolinks:before-render', () => {
+  window.vueApp.$destroy()
 })
