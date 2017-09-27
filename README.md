@@ -3,8 +3,8 @@
 Forms solution for static sites.
 
 ![](./demo_screenshots/messages_list.png)
-[other screenshots](./demo_screenshots)
-[vimeo demo] (https://vimeo.com/233673541)
+[other screenshots](./demo_screenshots) /
+[vimeo demo](https://vimeo.com/233673541)
 
 ## ENVs
 
