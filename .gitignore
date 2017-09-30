@@ -13,11 +13,12 @@
 .byebug_history
 
 .DS_Store
-/coverage
+/coverage 
 
 # Ignore application configuration
 /config/application.yml
 /config/deploy.rb
 /lib/logs/
+/public/packs
 /public/packs-test
 /node_modules
